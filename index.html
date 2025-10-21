@@ -1,45 +1,891 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Il Mio Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <title>Filippo Navarra - Data Scientist</title>
+  
+  <style>
+    :root {
+      --primary-bg: #fafafa;
+      --secondary-bg: #ffffff;
+      --text-primary: #0a0a0a;
+      --text-secondary: #525252;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --border-light: #e5e5e5;
+      --border-subtle: #f3f4f6;
+      --shadow-subtle: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --gradient-accent: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-primary);
+      background-color: var(--primary-bg);
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(250, 250, 250, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    nav .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    nav .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    nav .logo:hover {
+      opacity: 0.8;
+    }
+
+    nav .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    nav .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0;
+      position: relative;
+    }
+
+    nav .nav-links a:hover {
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    nav .nav-links a.cta {
+      background: var(--accent);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      transition: all 0.2s ease;
+    }
+
+    nav .nav-links a.cta:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 8rem 0 6rem;
+      background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-text .greeting {
+      display: inline-block;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      animation: wave 2.5s ease-in-out infinite;
+    }
+
+    @keyframes wave {
+      0%, 100% { transform: rotate(0deg); }
+      10%, 30% { transform: rotate(14deg); }
+      20% { transform: rotate(-8deg); }
+      40%, 60% { transform: rotate(0deg); }
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .hero-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--border-light);
+      border-radius: 50px;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      background: var(--secondary-bg);
+    }
+
+    .hero-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .hero-image {
+      position: relative;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: var(--shadow-medium);
+      transition: transform 0.3s ease;
+    }
+
+    .hero-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: var(--gradient-accent);
+      border-radius: 25px;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    /* Skills Section */
+    .skills-section {
+      padding: 6rem 0;
+      background: var(--secondary-bg);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .section-header p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .skill-card {
+      background: var(--primary-bg);
+      padding: 2rem 1.5rem;
+      border-radius: 16px;
+      border: 1px solid var(--border-light);
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-primary);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .skill-card:hover::before {
+      transform: translateX(0);
+    }
+
+    .skill-icon {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 1rem;
+      border-radius: 12px;
+      background: var(--secondary-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+      padding: 6px;
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .skill-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .skill-name {
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-level {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    /* Journey Section */
+    .journey-section {
+      padding: 6rem 0;
+      background: var(--secondary-bg);
+    }
+
+    .journey-item {
+      margin-bottom: 6rem;
+      position: relative;
+    }
+
+    .journey-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .journey-content {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+    }
+
+    .journey-content.reverse {
+      grid-template-columns: 1fr 300px;
+    }
+
+    .journey-content.reverse .journey-text {
+      order: -1;
+      text-align: right;
+    }
+
+    .journey-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: var(--shadow-medium);
+      transition: all 0.4s ease;
+    }
+
+    .journey-image:hover {
+      transform: scale(1.05) rotate(2deg);
+      box-shadow: 0 8px 25px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    .journey-image img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: all 0.4s ease;
+    }
+
+    .journey-image:hover img {
+      transform: scale(1.1);
+    }
+
+    .journey-number {
+      position: absolute;
+      top: -7px;
+      right: -8px;
+      width: 50px;
+      height: 50px;
+      background: var(--gradient-primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.2rem;
+      box-shadow: var(--shadow-medium);
+      z-index: 2;
+      border: 3px solid var(--secondary-bg);
+    }
+
+    .journey-text h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      color: var(--text-primary);
+    }
+
+    .journey-text p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+
+    .journey-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .journey-tags span {
+      background: var(--primary-bg);
+      color: var(--text-secondary);
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid var(--border-light);
+      transition: all 0.2s ease;
+    }
+
+    .journey-tags span:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* Timeline connecting line */
+    
+
+    /* Timeline dots at each phase */
+    .journey-item::before {
+    content: none;            /* rimuove il contenuto del pseudo-elemento */
+    background: none !important;  
+    background-color: transparent !important;
+    display: none;            /* assicura che non occupi spazio */
+  }
+    /* Footer */
+    footer {
+      background: var(--text-primary);
+      color: white;
+      padding: 3rem 0 2rem;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      background: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .footer-text {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1rem;
+      }
+
+      nav .nav-content {
+        padding: 0 1rem;
+      }
+
+      nav .nav-links {
+        gap: 1rem;
+      }
+
+      nav .nav-links span {
+        display: none;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+      }
+
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-section {
+        padding: 6rem 0 4rem;
+      }
+
+      .section-header h2 {
+        font-size: 2rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .journey-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+      }
+
+      .journey-content.reverse {
+        grid-template-columns: 1fr;
+      }
+
+      .journey-content.reverse .journey-text {
+        order: 0;
+        text-align: center;
+      }
+
+      .journey-image {
+        max-width: 300px;
+        margin: 0 auto;
+      }
+
+      .journey-timeline::before {
+        left: 20px;
+        transform: none;
+      }
+
+      .journey-item::before {
+        left: 20px;
+        transform: none;
+      }
+
+      .footer-links {
+        gap: 1rem;
+      }
+    }
+
+    /* Smooth animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Loading animation for skills */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    .skill-card:nth-child(1) { animation-delay: 0.1s; }
+    .skill-card:nth-child(2) { animation-delay: 0.2s; }
+    .skill-card:nth-child(3) { animation-delay: 0.3s; }
+    .skill-card:nth-child(4) { animation-delay: 0.4s; }
+    .skill-card:nth-child(5) { animation-delay: 0.5s; }
+  </style>
 </head>
 <body>
-  <header>
-    <img src="https://via.placeholder.com/150" alt="Foto profilo">
-    <h1>Filippo Navarra</h1>
-    <p>Sviluppatore • Artista • Ragionatore</p>
-  </header>
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-content">
+      <a href="#" class="logo">Filippo Navarra</a>
+      
+      <div class="nav-links">
+        <a href="https://github.com/Filippo2605" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-github"></i>
+          <span>Github</span>
+        </a>
+        
+        <a href="https://www.linkedin.com/in/filippo-navarra-b7a72a28b/" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-linkedin"></i>
+          <span>LinkedIn</span>
+        </a>
+        
+        <a href="mailto:filipponavarra224@gmail.com" class="cta">
+          <i class="fa-solid fa-envelope"></i>
+          <span>Email</span>
+        </a>
+      </div>
+    </div>
+  </nav>
 
   <main>
-    <section>
-      <h2>Chi sono</h2>
-      <p>
-        Sono uno sviluppatore appassionato di tecnologia e design.
-        Amo creare soluzioni semplici ed eleganti.
-      </p>
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <div class="greeting">Hi, I'm Filippo <span style="display: inline-block;">👋</span></div>
+            <h1>Data Scientist</h1>
+            <p>I am Italian, born and raised in Rome, in the vibrant neighborhood of Testaccio — I’m quite proud of it, so I had to mention it! I cherish my roots and strive to know everything about my city, from music to cinema to history. I love sharing my knowledge and, above all, listening to others. I genuinely listen, without simply waiting for my turn to speak.
+
+I would describe my personal qualities as a combination of creativity and critical thinking with a numerical, data-driven approach. Driven by curiosity, I embrace new challenges with enthusiasm and enjoy exploring how people think and interact with the world. I believe data is the fuel of our time and an incredible source of improvement.</p>
+            
+            <div class="hero-links">
+              <a href="#skills">
+                <i class="fa-solid fa-code"></i>
+                <span>Skills</span>
+              </a>
+              
+              <a href="#journey">
+                <i class="fa-solid fa-route"></i>
+                <span>My Journey</span>
+              </a>
+              
+              <a href="#contact">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>Get in Touch</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-image">
+            <img src="images/Image (1).jpg" alt="Filippo Navarra">
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>Progetti</h2>
-      <ul>
-        <li><a href="#">Portfolio fotografico</a></li>
-        <li><a href="#">App To-Do in React</a></li>
-        <li><a href="#">Analisi dati con Python</a></li>
-      </ul>
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="skills-section">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2>Technical Skills</h2>
+          <p>My expertise revolves around Python programming with deep knowledge in machine learning libraries, data analysis tools, and version control systems.</p>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-card fade-in">
+            <div class="skill-icon">
+              <img src="images/python_logo.jpg" alt="Python">
+            </div>
+            <div class="skill-name">Python</div>
+            <div class="skill-level">Advanced</div>
+          </div>
+          
+          <div class="skill-card fade-in">
+            <div class="skill-icon">
+              <img src="images/c_logo.jpg" alt="C Programming">
+            </div>
+            <div class="skill-name">C Programming</div>
+            <div class="skill-level">Intermediate</div>
+          </div>
+          
+          <div class="skill-card fade-in">
+            <div class="skill-icon">
+              <img src="images/latex_logo.jpg" alt="LaTeX">
+            </div>
+            <div class="skill-name">LaTeX</div>
+            <div class="skill-level">Advanced</div>
+          </div>
+          
+          <div class="skill-card fade-in">
+            <div class="skill-icon">
+              <img src="images/r_logo.jpg" alt="R Language">
+            </div>
+            <div class="skill-name">R Language</div>
+            <div class="skill-level">Basic</div>
+          </div>
+          
+          <div class="skill-card fade-in">
+            <div class="skill-icon">
+              <img src="images/office_logo.jpg" alt="Office Suite">
+            </div>
+            <div class="skill-name">Office Suite</div>
+            <div class="skill-level">Expert</div>
+          </div>
+        </div>
+
+        <div style="margin-top: 3rem; text-align: center;">
+          <p style="color: var(--text-secondary); font-style: italic;">
+            Specialized in: LangChain • TensorFlow • pandas • NumPy • Git Version Control
+          </p>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>Contatti</h2>
-      <p>📧 <a href="mailto:tuaemail@example.com">tuaemail@example.com</a></p>
-      <p>🔗 <a href="www.linkedin.com/in/filippo-navarra-b7a72a28b">LinkedIn</a> | <a href="https://github.com/Filippo2605">GitHub</a></p>
+    <!-- JOURNEY SECTION -->
+    <section id="journey" class="journey-section">
+      <div class="container">
+        <div class="section-header fade-in">
+          <h2>My Journey</h2>
+          <p>Exploring the key moments and experiences that shaped who I am today</p>
+        </div>
+
+        <div class="journey-timeline">
+          <div class="journey-item fade-in">
+            <div class="journey-content">
+              <div class="journey-image">
+                <img src="images\childhood.jpg" alt="Childhood phase">
+                <div class="journey-number">01</div>
+              </div>
+              <div class="journey-text">
+                <h3>Early Years</h3>
+                <p>The roots of my curiosity trace back to my childhood. I was always a friendly and inquisitive child, calm and well-liked by my teachers. I fondly remember being nicknamed "The Prince" by my kindergarten teacher, a memory that still inspires my passion for learning today.</p>
+                <div class="journey-tags">
+                  <span>Curiosity</span>
+                  <span>Discovery</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="journey-item fade-in">
+            <div class="journey-content reverse">
+              <div class="journey-image">
+                <img src="images\Image (1).jpg" alt="Academic Journey">                
+                <div class="journey-number">02</div>
+              </div>
+              <div class="journey-text">
+                <h3>Academic Journey</h3>
+                <p>My educational journey has led me deep into the world of data science. I began at a Language High School, driven by curiosity about how people truly live across the world — and what better way to start than by learning to speak with them? I then pursued a Bachelor’s degree in Political Science and International Relations.
+
+This experience taught me how to critically explore and understand the institutional world around us. My desire to connect theoretical knowledge with real-world applications led me to reflect on how to effectively communicate and deliver information — and the answer was Data.
+
+I then embarked on a Master’s degree in Data Science and Management, which completely transformed my perspective, aligning it with a business-oriented mindset and enhancing my analytical reasoning. 
+                </p>
+                <div class="journey-tags">
+                  <span>Learning</span>
+                  <span>Growth</span>
+                  <span>Programming</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="journey-item fade-in">
+            <div class="journey-content">
+              <div class="journey-image">
+                <img src="images\beginnings.jpg" alt="Career phase">
+                <div class="journey-number">03</div>
+              </div>
+              <div class="journey-text">
+                <h3>Professional Beginnings</h3>
+                <p>Stepping into the professional world of data science was a transformative experience. My first role was at Deloitte, collaborating with the largest journalistic society in Italy, where I began to understand how the world of data — my greatest passion — truly comes to life and how to collaborate.
+                My responsibilities focused mainly on NLP tasks, implementing AI in journalistic processes, and managing the infrastructure that supports virtual machines and cloud services.
+                </p>
+                <div class="journey-tags">
+                  <span>Python</span>
+                  <span>Real Projects</span>
+                  <span>Team Work</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="journey-item fade-in">
+            <div class="journey-content reverse">
+              <div class="journey-image">
+                <img src="images\interests.jpg" alt="Personal interests">
+                <div class="journey-number">04</div>
+              </div>
+              <div class="journey-text">
+                <h3>Beyond Work</h3>
+                <p>Life isn't just about work. My passion for travel, music, and football keeps me balanced and inspired. These experiences fuel my creativity and provide fresh perspectives for problem-solving.
+                  Talking with people, sharing different perspective, I think is the most valuable lesson we can take.
+                </p>
+                <div class="journey-tags">
+                  <span>Travel</span>
+                  <span>Music</span>
+                  <span>Football</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+      <div class="container">
+        <div class="footer-links">
+          <a href="https://github.com/Filippo2605" target="_blank" rel="noopener noreferrer" title="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          
+          <a href="https://www.linkedin.com/in/filippo-navarra-b7a72a28b/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          
+          <a href="mailto:filipponavarra224@gmail.com" title="Email">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+        </div>
+        
+        <div class="footer-text">
+          <p>Let's connect and create something amazing together.</p>
+          <p style="margin-top: 1rem; opacity: 0.5;">© 2025 Filippo Navarra. Made with passion for data science.</p>
+        </div>
+      </div>
+    </footer>
   </main>
 
-  <footer>
-    <p>© 2025 Navarra Filippo</p>
-  </footer>
+  <script>
+    // Smooth navbar background on scroll
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(250, 250, 250, 0.95)';
+        navbar.style.boxShadow = '0 1px 3px 0 rgba(0, 0, 0, 0.1)';
+      } else {
+        navbar.style.background = 'rgba(250, 250, 250, 0.85)';
+        navbar.style.boxShadow = 'none';
+      }
+    });
+
+    // Fade in animation on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all elements with fade-in class
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Add initial animation to hero elements
+    window.addEventListener('load', () => {
+      document.querySelector('.hero-text').style.opacity = '0';
+      document.querySelector('.hero-image').style.opacity = '0';
+      document.querySelector('.hero-text').style.transform = 'translateY(30px)';
+      document.querySelector('.hero-image').style.transform = 'translateY(30px)';
+      
+      setTimeout(() => {
+        document.querySelector('.hero-text').style.transition = 'all 0.8s ease';
+        document.querySelector('.hero-image').style.transition = 'all 0.8s ease 0.2s';
+        document.querySelector('.hero-text').style.opacity = '1';
+        document.querySelector('.hero-image').style.opacity = '1';
+        document.querySelector('.hero-text').style.transform = 'translateY(0)';
+        document.querySelector('.hero-image').style.transform = 'translateY(0)';
+      }, 300);
+    });
+
+    // Enhanced skill card hover effects
+    document.querySelectorAll('.skill-card').forEach((card, index) => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = `translateY(-8px) rotate(${Math.random() * 4 - 2}deg)`;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0) rotate(0deg)';
+      });
+    });
+  </script>
 </body>
 </html>
