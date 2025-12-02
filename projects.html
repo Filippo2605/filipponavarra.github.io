@@ -544,7 +544,138 @@
         </section>
     <!-- Hidden template holding full project HTML (original content preserved) -->
     <template id="linkedin-scraper-template" class="detail-template">
-        ...existing code (LinkedIn template unchanged)...
+        <header class="detail-header">
+            <h2 id="detailTitle">LinkedIn Comment Scraper</h2>
+            <p>Automated extraction of dynamic LinkedIn comment threads for structured analysis and downstream NLP enrichment.</p>
+        </header>
+        <div class="detail-body">
+            <div class="project-meta">
+                <span class="tag">Python</span>
+                <span class="tag">Selenium</span>
+                <span class="tag">Web Scraping</span>
+                <span class="tag">Automation</span>
+            </div>
+
+            <div class="section">
+                <p class="section-content">
+                    In a world where social media conversations hold immense value for understanding public sentiment, engagement patterns, and community dynamics, I built a tool that bridges the gap between LinkedIn's professional discourse and actionable data insights. This project automates the extraction of comments from LinkedIn posts, transforming ephemeral conversations into structured data ready for analysis.
+                </p>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">The Challenge</h3>
+                <p class="section-content">
+                    LinkedIn's dynamic, JavaScript-heavy interface presents unique challenges for data extraction. Unlike static websites, comments load progressively, requiring interaction with the page to reveal the full conversation. The platform's authentication layer and anti-scraping measures add another dimension of complexity. The goal was clear: create a reliable, automated pipeline that could navigate these obstacles while respecting the platform's structure.
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <strong>Key Insight:</strong> Modern web scraping isn't just about parsing HTML—it's about simulating human behavior, understanding asynchronous content loading, and building robust systems that can handle the unpredictable nature of dynamic web applications.
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">Technical Deep Dive</h3>
+                <div class="technical-details">
+                    <div class="detail-card">
+                        <h4>🔐 Authentication Layer</h4>
+                        <p>Implemented secure credential management with automated login flow using Selenium WebDriver, handling LinkedIn's authentication challenge while maintaining session persistence.</p>
+                    </div>
+                    <div class="detail-card">
+                        <h4>🔄 Dynamic Content Loading</h4>
+                        <p>Engineered an intelligent pagination system that detects and clicks "Load More" buttons recursively, ensuring complete comment extraction regardless of thread length.</p>
+                    </div>
+                    <div class="detail-card">
+                        <h4>🎯 Smart Element Selection</h4>
+                        <p>Utilized XPath and CSS selectors to reliably target comment sorting options, switching to "Most Recent" view for chronological data organization.</p>
+                    </div>
+                    <div class="detail-card">
+                        <h4>💾 Data Preservation</h4>
+                        <p>Captured the complete rendered HTML state, creating a snapshot that preserves all loaded comments for offline processing with BeautifulSoup.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">The Architecture</h3>
+                <p class="section-content">
+                    The scraper follows a three-stage pipeline architecture:
+                </p>
+                <div class="highlight-box">
+                    <strong>Stage 1: Initialization & Authentication</strong><br>
+                    The WebDriver initializes with Microsoft Edge, navigating to LinkedIn's login portal. Credentials are securely injected, and the system waits for successful authentication before proceeding.
+                    <br><br>
+                    <strong>Stage 2: Navigation & Dynamic Loading</strong><br>
+                    Once authenticated, the scraper navigates to the target post URL. It intelligently identifies and interacts with comment sorting menus, then enters a recursive loop to load all hidden comments.
+                    <br><br>
+                    <strong>Stage 3: Extraction & Persistence</strong><br>
+                    With all comments visible, the complete page source is captured and saved as HTML. This decouples scraping from parsing, allowing for flexible downstream analysis.
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">Code Walkthrough</h3>
+                <p class="section-content">
+                    Here's how the comment loading mechanism works—the heart of the automation:
+                </p>
+                <div class="code-snippet">
+<pre><code>
+# Recursive comment loading algorithm
+while True:
+    try:
+        load_button = driver.find_element(
+            By.XPATH,
+            "//button[contains(@aria-label, 'Load more')]"
+        )
+        driver.execute_script(
+            "arguments[0].scrollIntoView();",
+            load_button
+        )
+        load_button.click()
+        time.sleep(2)  # Allow content to render
+    except:
+        break  # No more comments to load
+</code></pre>
+                </div>
+                <p class="section-content">
+                    This elegant loop continues until the "Load more" button disappears, indicating all comments are visible. The scroll behavior ensures elements are in the viewport before interaction, preventing common Selenium exceptions.
+                </p>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">Beyond Basic Scraping</h3>
+                <p class="section-content">
+                    What makes this project particularly interesting is its extensibility. The saved HTML serves as a foundation for sophisticated analysis:
+                </p>
+                <ul class="section-content" style="margin-left:20px;">
+                    <li><strong>Sentiment Analysis:</strong> Feed comment text into NLP models to gauge audience reaction to posts</li>
+                    <li><strong>Network Mapping:</strong> Extract commenter profiles to build engagement networks and identify key influencers</li>
+                    <li><strong>Temporal Analysis:</strong> Study comment velocity and timing to understand optimal posting schedules</li>
+                    <li><strong>Content Strategy:</strong> Analyze which topics generate the most meaningful discussions</li>
+                </ul>
+            </div>
+
+            <div class="insight-box">
+                <strong>Ethical Consideration:</strong> This project exists in the educational space, designed to understand web automation and data extraction techniques. Real-world applications must respect LinkedIn's Terms of Service, rate limiting, and user privacy. The goal is learning, not exploitation.
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">What I Learned</h3>
+                <p class="section-content">
+                    Building this scraper reinforced several key principles that extend beyond just technical implementation. I learned that effective web scraping is as much about understanding human-computer interaction patterns as it is about code. The challenges of timing, state management, and error handling in a dynamic environment taught me to think in terms of systems resilience rather than just functionality.
+                </p>
+                <p class="section-content">
+                    Perhaps most importantly, this project highlighted the importance of separating concerns—keeping scraping logic distinct from parsing logic creates more maintainable, flexible systems that can adapt as websites evolve.
+                </p>
+            </div>
+
+            <a href="https://github.com/Filippo2605/Scraping-Linkedin-Post-comments"
+               class="github-link" target="_blank" rel="noopener">
+               <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                   <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+               </svg>
+               View Project on GitHub
+            </a>
+        </div>
     </template>
 
     <!-- New template: Italian Forward Report -->
@@ -1474,4 +1605,5 @@ while True:
         })();
     </script>
 </body>
+
 </html>
