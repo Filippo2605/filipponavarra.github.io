@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Selected data science and machine learning projects by Filippo Navarra — from sponsored industry work to NLP, sports analytics and civic open data.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css">
+
+  <title>Projects — Filippo Navarra</title>
+</head>
+<body>
+
+  <!-- ====== Navigation ====== -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-dot" aria-hidden="true"></span>
+        Filippo Navarra
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">
+          <i class="fa-solid fa-user"></i><span>About</span>
+        </a>
+        <a href="https://github.com/Filippo2605" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-github"></i><span>GitHub</span>
+        </a>
+        <a href="https://www.linkedin.com/in/filippo-navarra-b7a72a28b/" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-linkedin"></i><span>LinkedIn</span>
+        </a>
+        <a href="mailto:filipponavarra224@gmail.com" class="cta">
+          <i class="fa-solid fa-envelope"></i><span>Get in touch</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ====== Page hero ====== -->
+    <section class="page-hero">
+      <div class="container">
+        <span class="eyebrow">Selected work</span>
+        <h1>Projects</h1>
+        <p class="lead">A working portfolio of data-science projects — from sponsored industry work to academic research, NLP on social data, sports analytics, and civic open-data dashboards. Each entry below summarises the brief, the approach, the stack and the outcome. Source on GitHub.</p>
+        <div class="meta-line">
+          <span><i class="fa-solid fa-code-branch"></i>9 projects</span>
+          <span><i class="fa-brands fa-python"></i>Python · R</span>
+          <span><i class="fa-solid fa-database"></i>ML · NLP · Stats · Viz</span>
+          <span><i class="fa-brands fa-github"></i><a href="https://github.com/Filippo2605" target="_blank" rel="noopener noreferrer" style="color:inherit;">github.com/Filippo2605</a></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== Project grid ====== -->
+    <section class="projects-section">
+      <div class="container">
+        <div class="project-grid">
+
+          <!-- 1. RNN & ANFIS Financial Forecasting -->
+          <button class="project-card" data-project="rnn-anfis" type="button" aria-haspopup="dialog">
+            <div class="project-meta-row">
+              <span>Industry · ML</span>
+              <span>2024</span>
+            </div>
+            <h3>Financial Forecasting with RNNs &amp; ANFIS</h3>
+            <p>Sponsored ML project for EUKLID. Weekly time-series forecasting with a recurrent network, a neuro-fuzzy inference system, and a custom loss function tailored to financial errors.</p>
+            <div class="tag-row">
+              <span class="tag">Python</span>
+              <span class="tag">TensorFlow</span>
+              <span class="tag">RNN</span>
+              <span class="tag">ANFIS</span>
+              <span class="tag">Time Series</span>
+            </div>
+            <span class="card-cta">Read report <i class="fa-solid fa-arrow-right"></i></span>
+          </button>
+
+          <!-- 2. Italian Forward Report -->
+          <button class="project-card" data-project="italian-forward" type="button" aria-haspopup="dialog">
+            <div class="project-meta-row">
+              <span>Sports Analytics</span>
+              <span>2024</span>
+            </div>
+            <h3>Italian Forward Report — UEFA Euro 2024</h3>
+            <p>End-to-end pipeline (Python scraping → R modeling) to project national-team goal output for current Italian forwards. PCA, K-Means, CART and Random Forest on a custom Transfermarkt dataset.</p>
+            <div class="tag-row">
+              <span class="tag">Python</span>
+              <span class="tag">R</span>
+              <span class="tag">Web Scraping</span>
+              <span class="tag">PCA</span>
+              <span class="tag">Clustering</span>
+              <span class="tag">Random Forest</span>
+            </div>
+            <span class="card-cta">Read report <i class="fa-solid fa-arrow-right"></i></span>
+          </button>
+
+          <!-- 3. Pandoro Gate NLP -->
+          <button class="project-card" data-project="pandoro-gate" type="button" aria-haspopup="dialog">
+            <div class="project-meta-row">
+              <span>NLP · Social Media</span>
+              <span>2024</span>
+            </div>
+            <h3>Pandoro Gate — NLP on Italian Social Media</h3>
+            <p>Sentiment analysis and LDA topic modelling on Instagram comments around the Chiara Ferragni scandal. Replaces anecdote with a quantitative reading of public reaction by theme.</p>
+            <div class="tag-row">
+              <span class="tag">Python</span>
+              <span class="tag">NLP</span>
+              <span class="tag">Sentiment</span>
+              <span class="tag">LDA</span>
+              <span class="tag">Gensim</span>
+            </div>
+            <span class="card-cta">Read report <i class="fa-solid fa-arrow-right"></i></span>
+          </button>
+
+          <!-- 4. Mental Health in Tech -->
+          <button class="project-card" data-project="mental-health" type="button" aria-haspopup="dialog">
+            <div class="project-meta-row">
+              <span>HR Analytics · ML</span>
+              <span>2024</span>
+            </div>
+            <h3>Mental Health in Tech — OSMI 2016</h3>
+            <p>From 1,433 raw survey responses to 976 modelable rows. Comparison of four classifiers (RF, GBM, LR, DT) on a three-class outcome, with HR-actionable recommendations.</p>
+            <div class="tag-row">
+              <span class="tag">Python</span>
+              <span class="tag">Scikit-learn</span>
+              <span class="tag">EDA</span>
+              <span class="tag">Random Forest</span>
+              <span class="tag">HR Analytics</span>
+            </div>
+            <span class="card-cta">Read report <i class="fa-solid fa-arrow-right"></i></span>
+          </button>
+
+          <!-- 5. LinkedIn Comment Scraper -->
+          <button class="project-card" data-project="linkedin-scraper" type="button" aria-haspopup="dialog">
+            <div class="project-meta-row">
+              <span>Data Engineering</span>
+              <span>2025</span>
+            </div>
+            <h3>LinkedIn Comment Scraper</h3>
+            <p>Selenium pipeline that authenticates, exhausts the dynamic "load more" pagination, and persists the rendered HTML for downstream parsing — designed as the data-collection front end for NLP work.</p>
+            <div class="tag-row">
+              <span class="tag">Python</span>
+              <span class="tag">Selenium</span>
+              <span class="tag">BeautifulSoup</span>
+              <span class="tag">Automation</span>
+            </div>
+            <span class="card-cta">Read report <i class="fa-solid fa-arrow-right"></i></span>
+          </button>
+
+          <!-- 6. WikiMusic 2023 -->
+          <button class="project-card" data-project="wikimusic" type="button" aria-haspopup="dialog">
+            <div class="project-meta-row">
+              <span>Data Visualization</span>
+              <span>2023</span>
+            </div>
+            <h3>WikiMusic 2023</h3>
+            <p>Built a 1,000-artist dataset from the Wikipedia API and Wikidata SPARQL, then shipped a multi-page dashboard with maps, network graphs, sunbursts and a bar-chart race of daily top-viewed musicians.</p>
+            <div class="tag-row">
+              <span class="tag">Python</span>
+              <span class="tag">SPARQL</span>
+              <span class="tag">Wikipedia API</span>
+              <span class="tag">NetworkX</span>
+              <span class="tag">Plotly</span>
+            </div>
+            <span class="card-cta">Read report <i class="fa-solid fa-arrow-right"></i></span>
+          </button>
+
+          <!-- 7. Libera x LUISS -->
+          <button class="project-card" data-project="libera-luiss" type="button" aria-haspopup="dialog">
+            <div class="project-meta-row">
+              <span>Civic Tech · Open Data</span>
+              <span>2024</span>
+            </div>
+            <h3>Libera × LUISS — Mafia-Confiscated Assets</h3>
+            <p>Civic-tech collaboration with the anti-mafia NGO Libera. Cleaned ANBSC and Unioncamere open data, then shipped a multi-page Streamlit + Folium dashboard with weighted regional reuse-rate analysis.</p>
+            <div class="tag-row">
+              <span class="tag">Python</span>
+              <span class="tag">Streamlit</span>
+              <span class="tag">Folium</span>
+              <span class="tag">GeoJSON</span>
+              <span class="tag">Open Data</span>
+            </div>
+            <span class="card-cta">Read report <i class="fa-solid fa-arrow-right"></i></span>
+          </button>
+
+          <!-- 8. Car Insurance Claim Prediction -->
+          <button class="project-card" data-project="car-insurance" type="button" aria-haspopup="dialog">
+            <div class="project-meta-row">
+              <span>Machine Learning</span>
+              <span>2023</span>
+            </div>
+            <h3>Car Insurance Claim Prediction</h3>
+            <p>Binary classification on an annual car-insurance dataset. Full pipeline from EDA and feature engineering through model selection and hyper-parameter tuning, framed around the actual cost of a missed claim.</p>
+            <div class="tag-row">
+              <span class="tag">Python</span>
+              <span class="tag">Scikit-learn</span>
+              <span class="tag">Classification</span>
+              <span class="tag">Feature Engineering</span>
+            </div>
+            <span class="card-cta">Read report <i class="fa-solid fa-arrow-right"></i></span>
+          </button>
+
+          <!-- 9. Wine Quality Classification -->
+          <button class="project-card" data-project="wine-quality" type="button" aria-haspopup="dialog">
+            <div class="project-meta-row">
+              <span>Statistics · R</span>
+              <span>2023</span>
+            </div>
+            <h3>Wine Quality Classification</h3>
+            <p>Advanced statistics group project at LUISS. Models wine quality from physicochemical features using statistical-learning methods in R, with emphasis on interpretability over raw predictive lift.</p>
+            <div class="tag-row">
+              <span class="tag">R</span>
+              <span class="tag">R Markdown</span>
+              <span class="tag">Statistics</span>
+              <span class="tag">Classification</span>
+            </div>
+            <span class="card-cta">Read report <i class="fa-solid fa-arrow-right"></i></span>
+          </button>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====== Detail Modal ====== -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Close project details">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- ====== Detail templates ====== -->
+
+  <!-- 1. RNN & ANFIS -->
+  <template id="rnn-anfis-template" class="detail-template">
+    <header class="modal-head">
+      <span class="eyebrow">Industry · Machine Learning · 2024</span>
+      <h2 id="modalTitle">Financial Forecasting with RNNs &amp; ANFIS</h2>
+      <p class="summary">Sponsored ML project for <strong>EUKLID</strong>. Comparative forecasting of weekly financial time series using a recurrent neural network, an Adaptive Neuro-Fuzzy Inference System, and a custom loss function aligned with financial error sensitivity.</p>
+    </header>
+    <div class="modal-body">
+      <div class="tag-row">
+        <span class="tag">Python</span>
+        <span class="tag">TensorFlow / Keras</span>
+        <span class="tag">RNN</span>
+        <span class="tag">ANFIS</span>
+        <span class="tag">Custom Loss</span>
+        <span class="tag">Time Series</span>
+        <span class="tag">Team of 3</span>
+      </div>
+
+      <h3>Context</h3>
+      <p>Project commissioned by <strong>EUKLID</strong> for the Machine Learning Project module of the MSc in Data Science and Management at LUISS. Delivered as a team of three (Filippo Navarra, Dong Thi Kieu Trang, Marco Coci). The brief was a forecasting layer for weekly financial series, with an explicit comparison between a purely data-driven model and a neuro-fuzzy hybrid.</p>
+
+      <h3>Data</h3>
+      <p>A portfolio of weekly financial series (stored under <code>Weekly series/</code>), with the modelling pipeline trained on each series independently.</p>
+
+      <h3>Approach</h3>
+      <ul>
+        <li><strong>RNN.</strong> Recurrent architecture trained on short-horizon prediction. Implemented from scratch in Keras with controllable lookback, layer depth and dropout.</li>
+        <li><strong>ANFIS.</strong> Adaptive Neuro-Fuzzy Inference System combining fuzzy rule inference with neural-network learning. Useful as a more interpretable baseline whose membership functions encode soft decision regions over the input space.</li>
+        <li><strong>Custom loss.</strong> A loss function designed to better align training with what actually matters for a trading signal — penalising directional mistakes more strongly than a pure MSE would.</li>
+      </ul>
+
+      <h3>Stack</h3>
+      <ul>
+        <li><strong>Modelling.</strong> Python, TensorFlow / Keras, NumPy, pandas.</li>
+        <li><strong>Code.</strong> <code>anns.py</code> contains the model definitions for ANFIS, RNN and the custom loss; data handling lives alongside the weekly series.</li>
+        <li><strong>Deliverables.</strong> Working code plus an ML report (<code>ML_Report.pdf</code>) detailing the experimental setup and findings.</li>
+      </ul>
+
+      <h3>Outcome</h3>
+      <p>Side-by-side comparison of two paradigms — purely data-driven and neuro-fuzzy hybrid — on the same series, with the custom loss producing better directional alignment than the recurrent baseline trained with MSE. Full discussion in the attached report.</p>
+
+      <h3>Why it matters</h3>
+      <p>Hands-on industry collaboration, ownership of the model layer, and a non-standard loss formulation tailored to the business problem rather than a textbook objective.</p>
+
+      <div class="link-row">
+        <a href="https://github.com/Filippo2605/RNN-and-ANFIS-for-financial-forecasting"
+           class="repo-link" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-github"></i> View on GitHub
+        </a>
+        <a href="ML_Report%20(1).pdf" class="repo-link secondary" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-file-pdf"></i> Open full ML report (PDF)
+        </a>
+      </div>
+    </div>
+  </template>
+
+  <!-- 2. Italian Forward Report -->
+  <template id="italian-forward-template" class="detail-template">
+    <header class="modal-head">
+      <span class="eyebrow">Sports Analytics · 2024</span>
+      <h2 id="modalTitle">Italian Forward Report — UEFA Euro 2024</h2>
+      <p class="summary">End-to-end pipeline that scrapes Transfermarkt, reduces dimensionality with PCA, clusters forward archetypes with K-Means, and predicts national-team goal output with CART and Random Forest. Output: a ranked list of overperforming candidates for the 2024 Italian squad.</p>
+    </header>
+    <div class="modal-body">
+      <div class="tag-row">
+        <span class="tag">Python</span>
+        <span class="tag">R</span>
+        <span class="tag">Web Scraping</span>
+        <span class="tag">PCA</span>
+        <span class="tag">K-Means</span>
+        <span class="tag">CART</span>
+        <span class="tag">Random Forest</span>
+        <span class="tag">LaTeX</span>
+      </div>
+
+      <h3>Question</h3>
+      <p>Given the 2024 Italian roster, which forwards would deliver the most goals at Euro 2024? The project couples a defensible statistical pipeline with a clear classification rule: comparing predicted goals against actual ones to label players as overperforming or underperforming versus model expectation.</p>
+
+      <h3>Data</h3>
+      <p>Custom dataset scraped from Transfermarkt covering historical Italian national-team forwards (training set: past) and current candidates (test set). Twenty numeric features per player: club / national appearances, goals, assists, substitutions, cards, minutes, penalty conversion, goals-per-minute, etc.</p>
+
+      <h3>Pipeline</h3>
+      <ul>
+        <li><strong>Scraping.</strong> Paginated profile harvesting in Python (<code>requests</code> + <code>BeautifulSoup</code>), regex name sanitisation, error logging, structured export to <code>players.csv</code> and <code>player_stats.csv</code>.</li>
+        <li><strong>PCA.</strong> FactoMineR + factoextra after numeric cleaning. PC1 captures a "usage × productivity" axis; outlier profiles (e.g. Totti) clearly visible in the individuals plot.</li>
+        <li><strong>Clustering.</strong> K-Means on standardised features. <em>k</em> selected via elbow + average silhouette; clusters separate efficiency-driven, volume-driven and hybrid forward archetypes.</li>
+        <li><strong>CART.</strong> Regression tree (<code>rpart</code>, <code>method = "anova"</code>) on national-team goals.</li>
+        <li><strong>Random Forest.</strong> Bagged ensemble of decorrelated trees (<code>ntree = 100</code>); predictions rounded to integer goal totals.</li>
+      </ul>
+
+      <div class="kv-grid">
+        <div class="kv"><div class="label">PC1 variance</div><div class="value">35.16%</div></div>
+        <div class="kv"><div class="label">PC1 + PC2</div><div class="value">46.75%</div></div>
+        <div class="kv"><div class="label">Features</div><div class="value">20</div></div>
+        <div class="kv"><div class="label">Models</div><div class="value">CART · RF</div></div>
+      </div>
+
+      <h3>Dimensionality reduction (PCA)</h3>
+      <div class="figure-grid">
+        <figure class="figure">
+          <img src="PCA.png" alt="PCA — individuals plot" loading="lazy">
+          <figcaption>PCA individuals — distribution &amp; outliers</figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="pca2.png" alt="PCA — variables plot" loading="lazy">
+          <figcaption>PCA variables — correlated metrics</figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="screeplot.png" alt="Scree plot of PCA eigenvalues" loading="lazy">
+          <figcaption>Scree plot — retained components</figcaption>
+        </figure>
+      </div>
+
+      <h3>Clustering forward archetypes</h3>
+      <div class="figure-grid">
+        <figure class="figure">
+          <img src="elbow.png" alt="Elbow method curve" loading="lazy">
+          <figcaption>Elbow method — WCSS vs. k</figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="silhoutte.png" alt="Average silhouette score" loading="lazy">
+          <figcaption>Silhouette — separation quality</figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="cluster.png" alt="Cluster projection" loading="lazy">
+          <figcaption>Cluster projection — archetype grouping</figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="heatmap.png" alt="Correlation heatmap of features" loading="lazy">
+          <figcaption>Correlation heatmap — feature relationships</figcaption>
+        </figure>
+      </div>
+
+      <h3>Model performance</h3>
+      <div class="table-wrap">
+        <table class="metrics">
+          <thead>
+            <tr><th>Metric</th><th>CART</th><th>Random Forest</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>MAE</td><td>4.91</td><td class="best">3.48</td></tr>
+            <tr><td>MSE</td><td>53.00</td><td class="best">23.40</td></tr>
+            <tr><td>R²</td><td>−0.69</td><td class="best">0.25</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Findings</h3>
+      <ul>
+        <li><strong>Random Forest</strong> flags <strong>Pessina</strong>, <strong>Frattesi</strong> and <strong>Iemmello</strong> as overperformers versus model expectation.</li>
+        <li><strong>CART</strong> flags <strong>Immobile</strong>, <strong>Balotelli</strong>, <strong>Berardi</strong>, <strong>Colombo</strong> and <strong>El Shaarawy</strong>.</li>
+        <li>Strong empirical correlation between minutes played for the national team and goals-per-minute, indicating sustained efficiency among the historical reference group.</li>
+      </ul>
+
+      <h3>Stack</h3>
+      <ul>
+        <li><strong>Python.</strong> requests, BeautifulSoup, pandas.</li>
+        <li><strong>R.</strong> FactoMineR, factoextra, rpart, rpart.plot, randomForest.</li>
+        <li><strong>Reporting.</strong> LaTeX (<code>Italian Forward Report.pdf</code>).</li>
+      </ul>
+
+      <h3>Limitations</h3>
+      <p>Raw goals are used as a proxy for total forward contribution — pressing, link-up play, shot quality and chance creation are not represented. The negative R² on CART makes clear that tree-only models struggle on this regression, motivating the ensemble.</p>
+
+      <a href="https://github.com/Filippo2605/Best-Italian-Forward-for-Euro2024"
+         class="repo-link" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-github"></i> View on GitHub
+      </a>
+    </div>
+  </template>
+
+  <!-- 3. Pandoro Gate -->
+  <template id="pandoro-gate-template" class="detail-template">
+    <header class="modal-head">
+      <span class="eyebrow">NLP · Social Media · 2024</span>
+      <h2 id="modalTitle">Pandoro Gate — NLP on Italian Social Media</h2>
+      <p class="summary">A quantitative reading of how the Italian public actually reacted, online, to the "Pandoro Gate" scandal. Sentiment classification plus LDA topic modelling over scraped Instagram comments — informal Italian, slang, emoji and all.</p>
+    </header>
+    <div class="modal-body">
+      <div class="tag-row">
+        <span class="tag">Python</span>
+        <span class="tag">NLP</span>
+        <span class="tag">Sentiment Analysis</span>
+        <span class="tag">LDA</span>
+        <span class="tag">Topic Modelling</span>
+        <span class="tag">Italian Text</span>
+      </div>
+
+      <h3>Context</h3>
+      <p>The "Pandoro Gate" scandal involving Chiara Ferragni was the dominant Italian media event of late 2023 / early 2024. The project replaces anecdote with a structured reading of how the public actually engaged on social media.</p>
+
+      <h3>Data</h3>
+      <p>Comments scraped from the Instagram posts of Chiara Ferragni, Fedez and Italian news outlets that covered the story. A noisy, native-language corpus full of informal register, slang, sarcasm and emoji.</p>
+
+      <h3>Pipeline</h3>
+      <ul>
+        <li><strong>Pre-processing.</strong> Lowercasing, URL and punctuation stripping, stop-word removal and lemmatisation. Italian-specific cleaning rules to handle accents, contractions and platform-specific noise.</li>
+        <li><strong>Sentiment.</strong> Pre-trained sentiment model used to classify each comment as positive, negative or neutral, producing a per-post aggregate view of emotional tone.</li>
+        <li><strong>Topic modelling.</strong> Latent Dirichlet Allocation (LDA) over the cleaned corpus to surface the dominant themes of discussion.</li>
+      </ul>
+
+      <h3>Findings</h3>
+      <div class="callout"><strong>Overwhelmingly negative sentiment</strong> toward the protagonist across the analysed comments — a clear data-driven signal of a reputational rather than narrowly legal crisis.</div>
+      <ul>
+        <li><strong>Deception &amp; trust.</strong> "scam", "lies", "trust" — the core grievance was perceived dishonesty.</li>
+        <li><strong>Charity &amp; money.</strong> Donations, profit motive and the commercial framing of the campaign.</li>
+        <li><strong>Apology &amp; consequences.</strong> The apology video, its perceived sincerity, the fine and the investigation.</li>
+        <li><strong>Brand image.</strong> Long-term impact on Ferragni's brand and on the influencer role itself.</li>
+      </ul>
+
+      <h3>Stack</h3>
+      <p>Python, NLTK / spaCy for Italian-language tooling, scikit-learn, gensim (LDA), pandas.</p>
+
+      <h3>Why it matters</h3>
+      <p>An applied NLP pipeline on noisy, native-language social data — directly relevant to reputation analytics, crisis monitoring and brand-tracking work.</p>
+
+      <div class="link-row">
+        <a href="https://github.com/Filippo2605/Pandoro-Gate-NLP-analysis"
+           class="repo-link" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-github"></i> View on GitHub
+        </a>
+        <a href="Pandoro%20Gate%20Report.pdf" class="repo-link secondary" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-file-pdf"></i> Open full report (PDF)
+        </a>
+      </div>
+    </div>
+  </template>
+
+  <!-- 4. Mental Health in Tech -->
+  <template id="mental-health-template" class="detail-template">
+    <header class="modal-head">
+      <span class="eyebrow">HR Analytics · Machine Learning · 2024</span>
+      <h2 id="modalTitle">Mental Health in Tech — OSMI 2016</h2>
+      <p class="summary">From a raw 1,433-row survey to a clean 976-row modelling dataset, then a four-classifier shootout on a three-class outcome. The goal: surface workplace mental-health drivers that HR can actually act on.</p>
+    </header>
+    <div class="modal-body">
+      <div class="tag-row">
+        <span class="tag">Python</span>
+        <span class="tag">pandas</span>
+        <span class="tag">Scikit-learn</span>
+        <span class="tag">EDA</span>
+        <span class="tag">Classification</span>
+        <span class="tag">HR Analytics</span>
+      </div>
+
+      <h3>Context</h3>
+      <p>The OSMI Mental Health in Tech Survey 2016 captures attitudes and resources around mental health in tech workplaces. The project translates raw survey responses into HR-actionable insights through structured cleaning, visual exploration and modelling.</p>
+
+      <h3>Data cleaning</h3>
+      <ul>
+        <li>Dropped columns with more than 50% missingness (resources / impacts).</li>
+        <li>Removed 287 rows with NA on "employer mental health benefits" — that field gates many dependent questions (size, tech org, formal discussion, anonymity, resources, leave ease, perceived consequences, comfort levels).</li>
+        <li>Conditional NAs (US state, diagnosis-related prompts) re-coded as <em>Not Applicable</em>.</li>
+        <li>Gender normalised to {Male, Female, Other}; age outliers corrected (323 → 32; 3 → 30; 99 → 30).</li>
+        <li>Removed two uninformative fields ("self-employed?", "previous employers?").</li>
+      </ul>
+
+      <div class="kv-grid">
+        <div class="kv"><div class="label">Initial</div><div class="value">1,433 × 63</div></div>
+        <div class="kv"><div class="label">Post drops</div><div class="value">1,015 × 52</div></div>
+        <div class="kv"><div class="label">Final</div><div class="value">976 × 50</div></div>
+      </div>
+
+      <h3>EDA highlights</h3>
+      <ul>
+        <li>Anxiety and mood disorders dominate the prevalence breakdown.</li>
+        <li>Respondents skew 25–40 and US-based.</li>
+        <li>Geographic split: anxiety prevalent in Europe / Canada / Russia / Asia; mood disorders prominent in the US, UK, Chile and Australia; ADHD notably represented in Denmark.</li>
+        <li>Stigma and fear of negative consequences are recurring concerns across demographics.</li>
+      </ul>
+
+      <div class="figure-grid">
+        <figure class="figure">
+          <img src="common.png" alt="Most common mental-health disorders" loading="lazy">
+          <figcaption>Disorder prevalence across respondents</figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="mhdgender.png" alt="Mental-health disorders by gender" loading="lazy">
+          <figcaption>Disorders by gender</figcaption>
+        </figure>
+      </div>
+      <figure class="figure">
+        <img src="map2.png" alt="World map of most common disorders by country" loading="lazy">
+        <figcaption>Most common disorder by country</figcaption>
+      </figure>
+
+      <h3>Modelling</h3>
+      <p>Three-class outcome (Yes / No / Maybe). Categorical features one-hot encoded; four classifiers compared with consistent train/test splits.</p>
+
+      <div class="table-wrap">
+        <table class="metrics">
+          <thead>
+            <tr><th>Model</th><th>Hyperparameters</th><th>Train acc.</th><th>Test acc.</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="best">Random Forest</td>
+              <td>n_estimators=200, max_depth=7, min_samples_leaf=5</td>
+              <td>70%</td>
+              <td class="best">64%</td>
+            </tr>
+            <tr>
+              <td>Decision Tree</td>
+              <td>max_depth=3</td>
+              <td>65%</td>
+              <td>64%</td>
+            </tr>
+            <tr>
+              <td>Gradient Boosting</td>
+              <td>n_estimators=100, learning_rate=1e-3</td>
+              <td>64%</td>
+              <td>62%</td>
+            </tr>
+            <tr>
+              <td>Logistic Regression</td>
+              <td>C=1.5, max_iter=1000</td>
+              <td>71%</td>
+              <td>53%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Drivers (Random Forest feature importance)</h3>
+      <ul>
+        <li>Prior professional treatment.</li>
+        <li>Family history of mental-health issues.</li>
+        <li>Workplace handling of mental-health issues.</li>
+        <li>Stigma perceptions and fear of negative consequences.</li>
+        <li>Availability of employer-provided benefits.</li>
+      </ul>
+
+      <div class="figure-grid">
+        <figure class="figure">
+          <img src="important.png" alt="Top 10 feature importances from Random Forest" loading="lazy">
+          <figcaption>Top 10 feature importances</figcaption>
+        </figure>
+        <figure class="figure">
+          <img src="rfoutput.png" alt="Representative Random Forest tree" loading="lazy">
+          <figcaption>Representative tree — split logic</figcaption>
+        </figure>
+      </div>
+
+      <h3>Recommendations for HR</h3>
+      <ul>
+        <li><strong>Awareness &amp; stigma reduction.</strong> Normalise the conversation; consider mental-health ambassadors.</li>
+        <li><strong>Accessible resources.</strong> Make coverage and confidential counselling pathways visible.</li>
+        <li><strong>Supportive environment.</strong> Anonymity protection, manager training, family-inclusive events.</li>
+        <li><strong>Work-life balance.</strong> Flexible arrangements to reduce structural stressors.</li>
+        <li><strong>Feedback loops.</strong> Re-survey on a cadence and let the data update policy.</li>
+      </ul>
+
+      <h3>Limitations</h3>
+      <p>Self-report bias, conditional-question gating, simplified gender grouping, single-year scope, and an intrinsically ambiguous "Maybe" class that all models struggle to learn.</p>
+
+      <a href="https://github.com/Filippo2605/Mental-Health-in-Tech-Companies"
+         class="repo-link" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-github"></i> View on GitHub
+      </a>
+    </div>
+  </template>
+
+  <!-- 5. LinkedIn Comment Scraper -->
+  <template id="linkedin-scraper-template" class="detail-template">
+    <header class="modal-head">
+      <span class="eyebrow">Data Engineering · 2025</span>
+      <h2 id="modalTitle">LinkedIn Comment Scraper</h2>
+      <p class="summary">A Selenium-driven pipeline that authenticates against LinkedIn, exhausts the dynamic "load more" pagination on a target post, and persists the rendered DOM for offline parsing. Designed as the data-collection layer for downstream NLP work.</p>
+    </header>
+    <div class="modal-body">
+      <div class="tag-row">
+        <span class="tag">Python</span>
+        <span class="tag">Selenium</span>
+        <span class="tag">BeautifulSoup</span>
+        <span class="tag">Automation</span>
+        <span class="tag">WebDriver</span>
+      </div>
+
+      <h3>Problem</h3>
+      <p>LinkedIn comment threads are fully dynamic — lazy-loaded, sorted client-side and gated behind an auth wall. Static HTTP scrapers see almost none of the actual content. The goal was a reliable pipeline that walks the rendered page exactly the way a human would.</p>
+
+      <h3>Pipeline</h3>
+      <ul>
+        <li><strong>1. Authentication.</strong> Selenium WebDriver (Edge) drives the login flow with secure credential injection, then waits for a stable post-auth state before navigating further.</li>
+        <li><strong>2. Navigation &amp; dynamic load.</strong> Navigates to the target post URL, switches the comment sort to <em>Most Recent</em>, then enters a recursive loop that scrolls the next "Load more" button into view and clicks it until the button disappears.</li>
+        <li><strong>3. Persistence.</strong> Captures the fully rendered page source and writes it to disk as HTML. Decoupling scraping from parsing keeps the system easy to test and easy to adapt when LinkedIn ships UI changes.</li>
+      </ul>
+
+      <h3>Core loop</h3>
+      <div class="code-block"><pre><code>while True:
+    try:
+        btn = driver.find_element(
+            By.XPATH,
+            "//button[contains(@aria-label, 'Load more')]"
+        )
+        driver.execute_script("arguments[0].scrollIntoView();", btn)
+        btn.click()
+        time.sleep(2)   # let the next page of comments render
+    except:
+        break           # no more comments to load</code></pre></div>
+
+      <h3>Downstream usage</h3>
+      <ul>
+        <li>BeautifulSoup parses the saved HTML into structured comments.</li>
+        <li>From there: sentiment analysis on the audience reaction, network mapping of commenter → post relationships, and timing studies of engagement velocity.</li>
+      </ul>
+
+      <h3>Stack</h3>
+      <p>Python, Selenium WebDriver, BeautifulSoup.</p>
+
+      <div class="callout"><strong>Ethics &amp; scope.</strong> The project is built for educational and personal-research use. Real-world deployments must respect LinkedIn's Terms of Service, rate limits, user privacy and applicable data-protection law.</div>
+
+      <a href="https://github.com/Filippo2605/Scraping-Linkedin-Post-comments"
+         class="repo-link" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-github"></i> View on GitHub
+      </a>
+    </div>
+  </template>
+
+  <!-- 6. WikiMusic 2023 -->
+  <template id="wikimusic-template" class="detail-template">
+    <header class="modal-head">
+      <span class="eyebrow">Data Visualization · 2023</span>
+      <h2 id="modalTitle">WikiMusic 2023</h2>
+      <p class="summary">A data story about the most-read musicians on Wikipedia in 2023. Custom dataset of 1,000 artists built from Wikidata SPARQL and the Wikipedia API, then a multi-page dashboard with maps, networks, sunbursts and a daily bar-chart race.</p>
+    </header>
+    <div class="modal-body">
+      <div class="tag-row">
+        <span class="tag">Python</span>
+        <span class="tag">SPARQL</span>
+        <span class="tag">Wikipedia API</span>
+        <span class="tag">pandas</span>
+        <span class="tag">NetworkX</span>
+        <span class="tag">Plotly</span>
+        <span class="tag">Streamlit</span>
+      </div>
+
+      <h3>Context</h3>
+      <p>Group project for the Data Visualization course at LUISS (with Gian Lorenzo Marchioni, Marco Coci, Vincenzo Camerlengo). Goal: build a single coherent data story around how the global Wikipedia audience engaged with music in 2023.</p>
+
+      <h3>Data acquisition</h3>
+      <ul>
+        <li>Candidate names pulled from <strong>Wikidata via SPARQL</strong> with filters: occupation ∈ {musician, singer, guitarist, songwriter, rapper} or entity type = "musical group"; active since 1960; at least one award.</li>
+        <li>For each candidate, the <strong>Wikipedia API</strong> returned 2023 page views; the top 1,000 by views were retained.</li>
+        <li>Each artist enriched with genre, nationality, birthplace + coordinates, full article text, embedded inter-article links, profile picture and daily view counts.</li>
+      </ul>
+
+      <h3>Outputs</h3>
+      <ul>
+        <li><strong>Geographic.</strong> Map of artist birthplaces with audience-weighted markers.</li>
+        <li><strong>Categorical.</strong> Word clouds and sunburst charts across genre and nationality.</li>
+        <li><strong>Network.</strong> Inter-artist Wikipedia link graph built with NetworkX.</li>
+        <li><strong>Temporal.</strong> Bar-chart race of daily top-viewed artists across 2023.</li>
+        <li><strong>Editorial.</strong> A "newspaper" visualisation that mixes intro snippets from each article with the chart layer.</li>
+      </ul>
+
+      <h3>Stack</h3>
+      <p>Python (requests, SPARQLWrapper, Wikipedia API), pandas, NetworkX, Plotly, Streamlit dashboard.</p>
+
+      <h3>Why it matters</h3>
+      <p>Showcases data engineering on public APIs, large-scale enrichment, and the design decisions involved in turning hundreds of variables into a coherent visual narrative.</p>
+
+      <a href="https://github.com/Filippo2605/WikiMusic-2023"
+         class="repo-link" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-github"></i> View on GitHub
+      </a>
+    </div>
+  </template>
+
+  <!-- 7. Libera x LUISS -->
+  <template id="libera-luiss-template" class="detail-template">
+    <header class="modal-head">
+      <span class="eyebrow">Civic Tech · Open Data · 2024</span>
+      <h2 id="modalTitle">Libera × LUISS — Mafia-Confiscated Assets Dashboard</h2>
+      <p class="summary">A civic-tech collaboration with <strong>Libera — Associazioni, nomi e numeri contro le mafie</strong>. Cleaned ANBSC and Unioncamere open data on mafia-confiscated assets, then shipped a multi-page Streamlit + Folium dashboard with weighted regional reuse-rate analysis.</p>
+    </header>
+    <div class="modal-body">
+      <div class="tag-row">
+        <span class="tag">Python</span>
+        <span class="tag">Streamlit</span>
+        <span class="tag">Folium</span>
+        <span class="tag">Plotly</span>
+        <span class="tag">GeoJSON</span>
+        <span class="tag">Open Data</span>
+        <span class="tag">Civic Tech</span>
+      </div>
+
+      <h3>Context</h3>
+      <p>GAP2 Activities collaboration between LUISS "Guido Carli" and Libera. The brief was to make Italy's data on mafia-confiscated assets explorable and comparable across regions, so that the public and the NGO could read the picture beyond aggregate headlines.</p>
+
+      <h3>Data</h3>
+      <ul>
+        <li><strong>Asset data.</strong> ANBSC (Agenzia Nazionale per i Beni Sequestrati e Confiscati), Unioncamere and the aziende-confiscate open data catalogue.</li>
+        <li><strong>Geography.</strong> GeoJSON region/province limits, municipal codes, and province coordinate lookups for map rendering.</li>
+      </ul>
+
+      <h3>Pipeline</h3>
+      <ul>
+        <li>Cleaning and reconciliation of multiple JSON / CSV sources into a single asset dataset.</li>
+        <li>Province-code mapping to coordinates so that every record could be plotted geographically.</li>
+        <li>Region-weighted reuse-rate calculation so that small-numbers regions aren't unfairly ranked against large ones.</li>
+      </ul>
+
+      <h3>Dashboard pages</h3>
+      <ul>
+        <li><strong>Maps.</strong> Choropleths by region and by province for asset counts and predominant ATECO category; Folium with Jenks Natural Breaks classification.</li>
+        <li><strong>Line plots.</strong> Cumulative publications over time, broken down by document format (PDF, XML, …) — Plotly.</li>
+        <li><strong>Temporal trends.</strong> Variable selector to track how individual asset attributes evolve over time.</li>
+        <li><strong>Reuse of assets.</strong> Weighted regional comparison of reuse success rates, with the weighting logic explained inline so the reader can challenge it.</li>
+      </ul>
+
+      <h3>Stack</h3>
+      <p>Python, Streamlit, Folium, Plotly, GeoJSON, pandas, Jenks Natural Breaks.</p>
+
+      <h3>Why it matters</h3>
+      <p>Real stakeholder, real open data and a domain in which representation choices (weighting, binning, colour scale) materially change how the public reads the numbers. Transparency about those choices is part of the deliverable.</p>
+
+      <a href="https://github.com/Filippo2605/Libera-x-LUISS"
+         class="repo-link" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-github"></i> View on GitHub
+      </a>
+    </div>
+  </template>
+
+  <!-- 8. Car Insurance Claim Prediction -->
+  <template id="car-insurance-template" class="detail-template">
+    <header class="modal-head">
+      <span class="eyebrow">Machine Learning · 2023</span>
+      <h2 id="modalTitle">Car Insurance Claim Prediction</h2>
+      <p class="summary">Binary classification on annual car-insurance policy data. Full pipeline — EDA, feature engineering, model selection, tuning — framed around the actual cost asymmetry: a missed claim is more expensive than a false alarm.</p>
+    </header>
+    <div class="modal-body">
+      <div class="tag-row">
+        <span class="tag">Python</span>
+        <span class="tag">pandas</span>
+        <span class="tag">Scikit-learn</span>
+        <span class="tag">Classification</span>
+        <span class="tag">EDA</span>
+        <span class="tag">Feature Engineering</span>
+      </div>
+
+      <h3>Scenario</h3>
+      <p>Assignment for the Data Science course (MSc, LUISS). A car-insurance company shares its annual policy dataset; build a model that predicts whether a customer will file a claim (1) or not (0), to support risk assessment and customer engagement decisions.</p>
+
+      <h3>Pipeline</h3>
+      <ul>
+        <li><strong>EDA.</strong> Summary statistics, distributional plots, and feature/target relationships. Identification of leakage candidates and obviously degenerate columns.</li>
+        <li><strong>Preprocessing.</strong> Missing-value imputation, outlier handling and one-hot encoding for categoricals.</li>
+        <li><strong>Modelling.</strong> Train/test split followed by a comparison of standard classifiers (logistic regression, decision tree, random forest).</li>
+        <li><strong>Evaluation.</strong> Accuracy, precision, recall, F1 — and an explicit discussion of which metric matters more for an insurer's loss function.</li>
+        <li><strong>Tuning.</strong> Hyper-parameter search to lift performance above the un-tuned baselines.</li>
+      </ul>
+
+      <h3>Findings</h3>
+      <p>A tree-based classifier topped the comparison after tuning. Threshold calibration was deliberately moved away from the default 0.5 to reflect the asymmetric business cost: under-detection of claims is materially more expensive than a few extra false positives.</p>
+
+      <h3>Stack</h3>
+      <p>Python, pandas, NumPy, scikit-learn, matplotlib / seaborn.</p>
+
+      <h3>Limitations</h3>
+      <p>Small dataset, mild class imbalance, and the usual selection bias in any single-year policy snapshot. Repeat-business signals (renewals, prior claims history) would be the natural next feature set.</p>
+
+      <a href="https://github.com/Filippo2605/Car-Insurance-Claim-Predictions"
+         class="repo-link" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-github"></i> View on GitHub
+      </a>
+    </div>
+  </template>
+
+  <!-- 9. Wine Quality -->
+  <template id="wine-quality-template" class="detail-template">
+    <header class="modal-head">
+      <span class="eyebrow">Statistics · R · 2023</span>
+      <h2 id="modalTitle">Wine Quality Classification</h2>
+      <p class="summary">Group project for the Advanced Statistics course (MSc, LUISS). Models wine quality from physicochemical features using statistical-learning methods in R, with an explicit preference for interpretability over raw predictive lift.</p>
+    </header>
+    <div class="modal-body">
+      <div class="tag-row">
+        <span class="tag">R</span>
+        <span class="tag">R Markdown</span>
+        <span class="tag">Statistics</span>
+        <span class="tag">Classification</span>
+        <span class="tag">EDA</span>
+      </div>
+
+      <h3>Context</h3>
+      <p>The assignment was to classify wine quality given a set of measured chemical and physical attributes. The course emphasis was statistical inference, so the modelling vocabulary stayed close to classical generalised linear models and well-understood tree methods rather than black-box ensembles.</p>
+
+      <h3>Data</h3>
+      <p><code>WineQT.csv</code> — wine samples with fixed acidity, volatile acidity, citric acid, residual sugar, chlorides, sulphates, alcohol and an integer quality score.</p>
+
+      <h3>Approach</h3>
+      <ul>
+        <li><strong>EDA.</strong> Univariate distributions, pairwise correlations, multicollinearity checks. Sanity-checking class balance across the quality grades.</li>
+        <li><strong>Modelling.</strong> Classical statistical-learning methods in R — multinomial / ordinal regression, tree-based methods — compared on a clean train/test split.</li>
+        <li><strong>Selection.</strong> Standard classification metrics, with model choice biased toward coefficients and effects that the team could defend in the report.</li>
+      </ul>
+
+      <h3>Deliverables</h3>
+      <ul>
+        <li><code>wine_quality_code.rmd</code> — reproducible R Markdown notebook.</li>
+        <li><code>Group9_Report.pdf</code> — full statistical write-up of the modelling choices and findings.</li>
+      </ul>
+
+      <h3>Why it matters</h3>
+      <p>Reinforces the statistical-inference layer that complements the ML pipeline — choosing models for interpretability, communicating uncertainty, and being honest about effect sizes.</p>
+
+      <a href="https://github.com/Filippo2605/Wine-Quality-Classification"
+         class="repo-link" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-github"></i> View on GitHub
+      </a>
+    </div>
+  </template>
+
+  <!-- ====== Footer ====== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-social">
+        <a href="https://github.com/Filippo2605" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/filippo-navarra-b7a72a28b/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a href="mailto:filipponavarra224@gmail.com" aria-label="Email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+      <div class="footer-text">
+        <p>More work-in-progress lives on
+          <a href="https://github.com/Filippo2605" target="_blank" rel="noopener noreferrer">github.com/Filippo2605</a>.
+        </p>
+        <p class="quiet" style="margin-top: 0.5rem;">© 2025 Filippo Navarra. Made with passion for data science.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====== Modal script ====== -->
+  <script>
+    (function () {
+      const modal = document.getElementById('modal');
+      const modalContent = document.getElementById('modalContent');
+      const closeBtn = document.getElementById('modalClose');
+      let lastFocused = null;
+
+      function openProject(id) {
+        const tpl = document.getElementById(id + '-template');
+        if (!tpl) return;
+        lastFocused = document.activeElement;
+        modalContent.innerHTML = '';
+        modalContent.appendChild(tpl.content.cloneNode(true));
+
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+
+        requestAnimationFrame(() => closeBtn.focus());
+        document.addEventListener('keydown', onKeydown);
+      }
+
+      function closeProject() {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', onKeydown);
+        if (lastFocused) lastFocused.focus();
+      }
+
+      function onKeydown(e) {
+        if (e.key === 'Escape') closeProject();
+      }
+
+      // Card clicks
+      document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('click', () => openProject(card.dataset.project));
+      });
+
+      // Close interactions
+      closeBtn.addEventListener('click', closeProject);
+      modal.addEventListener('click', e => {
+        // click outside the card closes
+        const card = modal.querySelector('.modal-card');
+        if (card && !card.contains(e.target)) closeProject();
+      });
+    })();
+  </script>
+</body>
+</html>
