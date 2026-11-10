@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Which Italian forwards outperform their numbers? · Filippo Navarra</title>
+<meta name="description" content="A solo project before Euro 2024: 187 Italian national-team forwards scraped from Transfermarkt, PCA and k-means to profile them, and tree models to flag current players scoring above expectation.">
+<meta property="og:title" content="Which Italian forwards outperform their numbers? · Filippo Navarra">
+<meta property="og:description" content="A solo project before Euro 2024: 187 Italian national-team forwards scraped from Transfermarkt, PCA and k-means to profile them, and tree models to flag current players scoring above expectation.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-name" href="../index.html">Filippo Navarra</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../projects.html" aria-current="page">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="mailto:filipponavarra224@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<article>
+<header class="cs-head">
+  <div class="wrap">
+    <p class="crumb"><a href="../projects.html">← All work</a></p>
+    <h1>Which Italian forwards outperform their numbers?</h1>
+    <p class="lede">A personal project written before Euro 2024. I trained models on the careers of past Italian national-team forwards and used them to see which current players score more for Italy than their profile predicts.</p>
+    <dl class="facts">
+<div><dt>Type</dt><dd>Personal project, solo</dd></div>
+<div><dt>Date</dt><dd>July 2024</dd></div>
+<div><dt>Data</dt><dd>187 forwards, 20 variables, Transfermarkt</dd></div>
+<div><dt>Stack</dt><dd>Python (scraping), R (FactoMineR, factoextra, cluster, rpart, randomForest), LaTeX</dd></div>
+    </dl>
+    <p class="cs-links"><a href="../docs/italian-forward-report.pdf">Report (PDF)</a>
+<a href="https://github.com/Filippo2605/Best-Italian-Forward-for-Euro2024">Code on GitHub</a></p>
+  </div>
+</header>
+<div class="cs-body">
+  <div class="wrap"><div class="prose">
+<h2>Approach</h2>
+<p>Goals are an imperfect measure of a forward, and the report says so, but they are the one outcome every era of the national team records consistently. The idea: learn the relationship between a forward’s career profile and his goals for Italy from <strong>140 past players</strong>, apply it to <strong>47 current ones</strong>, and call a player over-performing when he has scored more than the model predicts.</p>
+
+<h2>Data</h2>
+<p>I scraped Italy’s all-time scorers in the forward position from Transfermarkt, chosen because it covers players back to Meazza and Piola. For each player there are 20 numeric variables: appearances, goals, assists, times subbed on and off, cards, penalty goals and minutes, for both club and national team.</p>
+
+<h2>Profiling forwards: PCA and clustering</h2>
+<p>PCA on the standardised variables: the first component explains 35.2% of the variance and the first two 46.8%. Francesco Totti sits far from everyone else on the individuals map.</p>
+<div class="fig-pair">
+<figure><img src="../assets/figures/italian-forward/PCA.png" alt="PCA individuals map of 187 forwards on the first two dimensions, with one clear outlier." loading="lazy" width="1050" height="648"><figcaption>Players on the first two principal components.</figcaption></figure>
+<figure><img src="../assets/figures/italian-forward/pca2.png" alt="PCA variable correlation circle showing how the 20 variables load on the first two dimensions." loading="lazy" width="1050" height="648"><figcaption>Variable loadings on the same plane.</figcaption></figure>
+</div>
+<p>I then ran k-means (<code>nstart = 25</code>) on the standardised data. The elbow and silhouette diagnostics are below; the silhouette is highest at two clusters, and I kept three to separate more player profiles.</p>
+<div class="fig-pair">
+<figure><img src="../assets/figures/italian-forward/silhouette.png" alt="Average silhouette width by number of clusters, highest at k = 2." loading="lazy" width="1050" height="648"><figcaption>Average silhouette width by k.</figcaption></figure>
+<figure><img src="../assets/figures/italian-forward/cluster.png" alt="K-means clusters (k = 3) projected on the first two principal components." loading="lazy" width="1050" height="648"><figcaption>Three clusters on the PCA plane.</figcaption></figure>
+</div>
+
+<h2>Predicting national-team goals</h2>
+<p>A regression tree (<code>rpart</code>, ANOVA) and a random forest (100 trees) were trained on the past players and evaluated on the current ones, with predictions rounded to whole goals.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Model</th><th class="num">MAE</th><th class="num">MSE</th><th class="num">R²</th></tr></thead>
+<tbody>
+<tr><td>Regression tree</td><td class="num">4.91</td><td class="num">53.0</td><td class="num">−0.69</td></tr>
+<tr class="best"><td>Random forest</td><td class="num">3.48</td><td class="num">23.4</td><td class="num">0.25</td></tr>
+</tbody></table></div>
+<p>The single tree does worse than predicting the average, which is what you expect from one deep tree on 140 noisy careers; averaging many trees fixes most of that.</p>
+<ul>
+<li><strong>Random forest</strong> flags <strong>Matteo Pessina, Davide Frattesi and Pietro Iemmello</strong> as scoring above expectation.</li>
+<li><strong>Regression tree</strong> flags Ciro Immobile, Mario Balotelli, Domenico Berardi, Lorenzo Colombo and Stephan El Shaarawy. The disagreement between the two lists is itself a result: the single tree is far more sensitive to noise.</li>
+</ul>
+
+<h2>What I would change</h2>
+<ul>
+<li><strong>Leakage.</strong> Some predictors, national-team minutes and penalty goals in particular, are almost components of the target. A cleaner version would predict national-team goals from club numbers only.</li>
+<li><strong>Units.</strong> Transfermarkt writes minutes with a dot as the thousands separator (“3.947’”) and reports minutes per goal rather than goals per minute; both need explicit parsing before modelling.</li>
+<li><strong>Reproducibility.</strong> The random forest should be seeded: different runs moved R² between 0.25 and 0.41.</li>
+<li>The current-player list includes attacking midfielders such as Pessina and Frattesi, which Transfermarkt’s scorer list counts as forwards.</li>
+</ul>
+  </div></div>
+</div>
+</article>
+<nav class="pager wrap" aria-label="More projects"><a href="rnn-anfis.html"><span class="label">Previous</span><span class="t">Recurrent vs. neuro-fuzzy networks for weekly market direction</span></a><a class="next" href="mental-health.html"><span class="label">Next</span><span class="t">Mental health in tech workplaces</span></a></nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Filippo Navarra · Rome</span>
+    <nav aria-label="Elsewhere">
+      <a href="mailto:filipponavarra224@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/filippo-navarra-b7a72a28b/">LinkedIn</a>
+      <a href="https://github.com/Filippo2605">GitHub</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

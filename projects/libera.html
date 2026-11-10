@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Transparency of confiscated mafia assets · Filippo Navarra</title>
+<meta name="description" content="With the anti-mafia association Libera: a Streamlit dashboard on how 969 Italian municipalities publish data on confiscated assets, and on 2,950 companies seized from organised crime.">
+<meta property="og:title" content="Transparency of confiscated mafia assets · Filippo Navarra">
+<meta property="og:description" content="With the anti-mafia association Libera: a Streamlit dashboard on how 969 Italian municipalities publish data on confiscated assets, and on 2,950 companies seized from organised crime.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-name" href="../index.html">Filippo Navarra</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../projects.html" aria-current="page">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="mailto:filipponavarra224@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<article>
+<header class="cs-head">
+  <div class="wrap">
+    <p class="crumb"><a href="../projects.html">← All work</a></p>
+    <h1>Transparency of confiscated mafia assets</h1>
+    <p class="lede">A data visualisation project with Libera, the Italian association against organised crime, as part of LUISS’s GAP2 activities. Libera provided the data; we cleaned it and built a dashboard to explore it.</p>
+    <dl class="facts">
+<div><dt>Partner</dt><dd>Libera · Associazioni, nomi e numeri contro le mafie</dd></div>
+<div><dt>Programme</dt><dd>GAP2 Activities, LUISS, 2023–24</dd></div>
+<div><dt>Team</dt><dd>Matteo Coviello, Alberta Cufari, Giovanni Da Vià, Torquato Di Biasi, Alessandro Morroni, Filippo Navarra</dd></div>
+<div><dt>Stack</dt><dd>Python, Streamlit, Folium, GeoPandas, jenkspy, Plotly, seaborn</dd></div>
+    </dl>
+    <p class="cs-links"><a href="https://github.com/Filippo2605/Libera-x-LUISS">Code on GitHub</a></p>
+  </div>
+</header>
+<div class="cs-body">
+  <div class="wrap"><div class="prose">
+<h2>Context</h2>
+<p>Many assets confiscated from organised crime in Italy are transferred to municipalities, which are required to publish a list of those assets and how they are being reused. Libera’s <em>RimanDATI</em> monitoring checks whether municipalities actually do this, and how well.</p>
+
+<h2>Data</h2>
+<ul>
+<li><strong>RimanDATI</strong>, from Libera’s national report on the transparency of confiscated assets: one row per municipality, with the number of assets transferred, whether a list is published, its date and format, and eleven yes/no checks on its contents (cadastral data, address, size, intended use, whether reuse is specified, the manager, the concession act and its duration). After matching municipalities to provinces and coordinates we had <strong>969 municipalities and 14,332 transferred assets</strong>.</li>
+<li><strong>Confiscated companies</strong>: the ANBSC and Unioncamere open-data releases, merged into one table of <strong>2,950 companies</strong> with legal form, sector (ATECO code), location and status.</li>
+<li>Region and province boundaries from openpolis’ GeoJSON, used for every map.</li>
+</ul>
+
+<h2>What the data shows</h2>
+<div class="numbers">
+<div><span class="n">602</span><span class="k">of 969 municipalities had not published the list</span></div>
+<div><span class="n">219</span><span class="k">published as searchable PDF, the most common format</span></div>
+<div><span class="n">38%</span><span class="k">of confiscated companies still active</span></div>
+<div><span class="n">503</span><span class="k">companies in construction, the largest sector</span></div>
+</div>
+<p>Of the municipalities that did publish, many used formats that are hard to reuse: 44 image-only PDFs and 34 images, against 22 spreadsheets and 4 CSV files. Among the companies, Sicily (946), Campania (508), Calabria (377) and Lazio (373) account for most of the total; after construction the most common sectors are bars (135) and real-estate trading (133).</p>
+
+<h2>The dashboard</h2>
+<p>Four pages in Streamlit:</p>
+<ul>
+<li><strong>Maps</strong>: transferred assets by province and region, classed with Jenks natural breaks so a few very large values don’t flatten the rest of the scale; and a selector across the transparency checks showing how each region contributes to the national total.</li>
+<li><strong>Publications over time</strong>: an animated cumulative count of published lists and a breakdown by file format.</li>
+<li><strong>Trends</strong>: for any transparency check, how the counts of “yes” and “no” evolved month by month, plus a bar-chart race of publications by region.</li>
+<li><strong>Confiscated companies</strong>: top sectors, active against ceased companies by sector, distribution by region and status, and maps of the predominant sector in each region and province.</li>
+</ul>
+
+<h2>A design question we had to answer</h2>
+<p>Raw percentages mislead when regions differ wildly in size: a region with three municipalities that all comply would top a ranking ahead of one with two hundred. The dashboard explains this on the page and shows each region’s contribution to the national count. In hindsight I would show both the share and the within-region rate side by side, since they answer different questions: where most compliance happens, and where it is most likely.</p>
+  </div></div>
+</div>
+</article>
+<nav class="pager wrap" aria-label="More projects"><a href="mental-health.html"><span class="label">Previous</span><span class="t">Mental health in tech workplaces</span></a><a class="next" href="car-insurance.html"><span class="label">Next</span><span class="t">Predicting car-insurance claims</span></a></nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Filippo Navarra · Rome</span>
+    <nav aria-label="Elsewhere">
+      <a href="mailto:filipponavarra224@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/filippo-navarra-b7a72a28b/">LinkedIn</a>
+      <a href="https://github.com/Filippo2605">GitHub</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

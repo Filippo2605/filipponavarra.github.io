@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LinkedIn comment scraper · Filippo Navarra</title>
+<meta name="description" content="A small Selenium and BeautifulSoup tool that loads every comment under a LinkedIn post and exports commenter name, profile link and text to CSV.">
+<meta property="og:title" content="LinkedIn comment scraper · Filippo Navarra">
+<meta property="og:description" content="A small Selenium and BeautifulSoup tool that loads every comment under a LinkedIn post and exports commenter name, profile link and text to CSV.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-name" href="../index.html">Filippo Navarra</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../projects.html" aria-current="page">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="mailto:filipponavarra224@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<article>
+<header class="cs-head">
+  <div class="wrap">
+    <p class="crumb"><a href="../projects.html">← All work</a></p>
+    <h1>LinkedIn comment scraper</h1>
+    <p class="lede">A small personal tool: given a LinkedIn post, collect every comment with the commenter’s name and profile link into a CSV for analysis.</p>
+    <dl class="facts">
+<div><dt>Type</dt><dd>Personal tool</dd></div>
+<div><dt>Date</dt><dd>January 2025</dd></div>
+<div><dt>Stack</dt><dd>Python, Selenium (Edge WebDriver), BeautifulSoup, pandas</dd></div>
+    </dl>
+    <p class="cs-links"><a href="https://github.com/Filippo2605/Scraping-Linkedin-Post-comments">Code on GitHub</a></p>
+  </div>
+</header>
+<div class="cs-body">
+  <div class="wrap"><div class="prose">
+<h2>Why a browser</h2>
+<p>LinkedIn comments sit behind a login and load a page at a time as you click “Load more comments”, so a plain HTTP request sees almost nothing. The tool drives a real browser instead.</p>
+
+<h2>How it works</h2>
+<ol>
+<li>Log in with Selenium and Microsoft Edge WebDriver, then open the post.</li>
+<li>Switch the comment order to <em>Most recent</em>, so the full thread is reachable, not just LinkedIn’s top picks.</li>
+<li>Click “Load more comments” until the button stops appearing.</li>
+<li>Save the rendered page, then parse it separately with BeautifulSoup into three columns (name, profile URL, comment text) and write <code>linkedin_comments.csv</code>.</li>
+</ol>
+<pre><code>while True:
+    try:
+        load_more = WebDriverWait(driver, 5).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR,
+                "button.comments-comments-list__load-more-comments-button--cr"))
+        )
+        load_more.click()
+        time.sleep(2)
+    except TimeoutException:
+        break  # no more comments to load</code></pre>
+<p>Keeping the raw HTML separate from the parsing step meant I could adjust the selectors and re-parse without hitting LinkedIn again.</p>
+
+<h2>Known limits</h2>
+<ul>
+<li>The selectors depend on LinkedIn’s current markup, including some generated class names, so they will need updating when the interface changes.</li>
+<li>Credentials should come from environment variables rather than the script.</li>
+<li>Scraping LinkedIn is against its terms of service; the tool is for personal, educational use on small volumes.</li>
+</ul>
+  </div></div>
+</div>
+</article>
+<nav class="pager wrap" aria-label="More projects"><a href="wikimusic.html"><span class="label">Previous</span><span class="t">WikiMusic 2023: the musicians Wikipedia read most</span></a><span></span></nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Filippo Navarra · Rome</span>
+    <nav aria-label="Elsewhere">
+      <a href="mailto:filipponavarra224@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/filippo-navarra-b7a72a28b/">LinkedIn</a>
+      <a href="https://github.com/Filippo2605">GitHub</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

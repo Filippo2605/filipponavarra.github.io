@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Predicting car-insurance claims · Filippo Navarra</title>
+<meta name="description" content="Random forest on 10,000 policies: KNN imputation, a data anomaly in young drivers’ records, and tuning to 0.85 accuracy and 0.91 AUC.">
+<meta property="og:title" content="Predicting car-insurance claims · Filippo Navarra">
+<meta property="og:description" content="Random forest on 10,000 policies: KNN imputation, a data anomaly in young drivers’ records, and tuning to 0.85 accuracy and 0.91 AUC.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-name" href="../index.html">Filippo Navarra</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../projects.html" aria-current="page">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="mailto:filipponavarra224@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<article>
+<header class="cs-head">
+  <div class="wrap">
+    <p class="crumb"><a href="../projects.html">← All work</a></p>
+    <h1>Predicting car-insurance claims</h1>
+    <p class="lede">An individual assignment for the Data Science course (Profs. Alessio Martino and Irene Cannistraci): given a year of policy data, predict whether a customer will make a claim.</p>
+    <dl class="facts">
+<div><dt>Course</dt><dd>Data Science, Profs. A. Martino &amp; I. Cannistraci</dd></div>
+<div><dt>Type</dt><dd>Individual assignment</dd></div>
+<div><dt>Date</dt><dd>December 2023 – January 2024</dd></div>
+<div><dt>Data</dt><dd>10,000 policies × 19 variables, 31% claims</dd></div>
+<div><dt>Stack</dt><dd>Python, pandas, scikit-learn, seaborn, GeoPandas</dd></div>
+    </dl>
+    <p class="cs-links"><a href="https://github.com/Filippo2605/Car-Insurance-Claim-Predictions">Notebook on GitHub</a></p>
+  </div>
+</header>
+<div class="cs-body">
+  <div class="wrap"><div class="prose">
+<h2>Data</h2>
+<p>10,000 customers with demographics (age band, gender, education, income), credit score, vehicle details, annual mileage, driving history (speeding violations, DUIs, past accidents) and the outcome: whether they claimed during the year. 31% did.</p>
+<p>The strongest correlations with claiming are negative: owning the vehicle (−0.38), credit score (−0.33), being married (−0.26) and having children (−0.23).</p>
+
+<h2>Something odd in the data</h2>
+<figure>
+<img src="../assets/figures/car-insurance/experience-anomaly.png" alt="Three bar charts of speeding violations, DUIs and past accidents by driving-experience band. Drivers with 0 to 9 years of experience show only zeros." loading="lazy" width="1191" height="1190">
+<figcaption>Violations, DUIs and past accidents by driving experience.</figcaption>
+</figure>
+<p>All 3,530 drivers with fewer than ten years of experience have zero speeding violations, zero DUIs and zero past accidents. That is not plausible for real new drivers; it looks like a generation or extraction artefact. I kept the rows, since the task was fixed, but flagged it: any model trained on this data will learn that inexperience is safe.</p>
+
+<h2>Missing values</h2>
+<p>Credit score (982 missing) and annual mileage (957 missing) needed imputing. Mean and median imputation produced visible spikes in the distributions, so I used a 5-nearest-neighbour imputer, which preserves their shape.</p>
+
+<h2>Model</h2>
+<p>Categorical variables were label-encoded and the data split 75/25 (2,500 test policies). I trained a random forest, then tuned the number of trees and the depth with a randomised search under 5-fold cross-validation (best: 208 trees, depth 11).</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Random forest</th><th class="num">Accuracy</th><th class="num">Precision</th><th class="num">Recall</th><th class="num">AUC</th></tr></thead>
+<tbody>
+<tr><td>Default parameters</td><td class="num">0.841</td><td class="num">0.738</td><td class="num">0.728</td><td class="num">0.90</td></tr>
+<tr class="best"><td>Tuned</td><td class="num">0.848</td><td class="num">0.745</td><td class="num">0.749</td><td class="num">0.91</td></tr>
+</tbody></table></div>
+<p>Tuning mainly helped recall: missed claims fell from 204 to 188 of 750 while false alarms stayed flat (194 → 192).</p>
+<div class="fig-pair">
+<figure><img src="../assets/figures/car-insurance/roc-tuned.png" alt="ROC curve of the tuned random forest, area 0.91." loading="lazy" width="578" height="453"><figcaption>ROC curve, tuned model.</figcaption></figure>
+<figure><img src="../assets/figures/car-insurance/importance-tuned.png" alt="Feature importance of the tuned model: driving experience, vehicle ownership, age and credit score lead." loading="lazy" width="565" height="560"><figcaption>Feature importance, tuned model.</figcaption></figure>
+</div>
+<p>Driving experience is the most important feature, which given the anomaly above should be read with caution.</p>
+
+<h2>What I would do next</h2>
+<ul>
+<li>Compare against simpler, interpretable baselines such as logistic regression, which an insurer would need for pricing decisions anyway.</li>
+<li>Use one-hot rather than label encoding for nominal variables, and choose the decision threshold from the relative cost of a missed claim and a false alarm.</li>
+<li>Find out where the young-driver anomaly comes from before trusting the model on that segment.</li>
+</ul>
+  </div></div>
+</div>
+</article>
+<nav class="pager wrap" aria-label="More projects"><a href="libera.html"><span class="label">Previous</span><span class="t">Transparency of confiscated mafia assets</span></a><a class="next" href="wine-quality.html"><span class="label">Next</span><span class="t">What makes a good wine? Logistic regression and the Lasso</span></a></nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Filippo Navarra · Rome</span>
+    <nav aria-label="Elsewhere">
+      <a href="mailto:filipponavarra224@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/filippo-navarra-b7a72a28b/">LinkedIn</a>
+      <a href="https://github.com/Filippo2605">GitHub</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

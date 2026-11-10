@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What makes a good wine? Logistic regression and the Lasso · Filippo Navarra</title>
+<meta name="description" content="Advanced Statistics group project in R: classifying wines as good or bad from 11 chemical measurements, with stepwise AIC selection and Lasso; 74% test accuracy, AUC 0.81.">
+<meta property="og:title" content="What makes a good wine? Logistic regression and the Lasso · Filippo Navarra">
+<meta property="og:description" content="Advanced Statistics group project in R: classifying wines as good or bad from 11 chemical measurements, with stepwise AIC selection and Lasso; 74% test accuracy, AUC 0.81.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-name" href="../index.html">Filippo Navarra</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../projects.html" aria-current="page">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="mailto:filipponavarra224@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<article>
+<header class="cs-head">
+  <div class="wrap">
+    <p class="crumb"><a href="../projects.html">← All work</a></p>
+    <h1>What makes a good wine? Logistic regression and the Lasso</h1>
+    <p class="lede">Final project for Advanced Statistics at LUISS: identify which chemical properties drive wine quality, with models simple enough that a winemaker could act on them.</p>
+    <dl class="facts">
+<div><dt>Course</dt><dd>Advanced Statistics, MSc Data Science &amp; Management, LUISS</dd></div>
+<div><dt>Team</dt><dd>Fabrizio Borrelli, Filippo Navarra, Joshua Brauner</dd></div>
+<div><dt>Date</dt><dd>December 2023</dd></div>
+<div><dt>Stack</dt><dd>R: glm, MASS::stepAIC, glmnet, pROC, ggcorrplot</dd></div>
+    </dl>
+    <p class="cs-links"><a href="../docs/wine-quality-report.pdf">Report (PDF)</a>
+<a href="https://github.com/Filippo2605/Wine-Quality-Classification">R Markdown on GitHub</a></p>
+  </div>
+</header>
+<div class="cs-body">
+  <div class="wrap"><div class="prose">
+<h2>Data and framing</h2>
+<p>The Kaggle wine quality dataset: eleven physicochemical measurements per wine (fixed and volatile acidity, citric acid, residual sugar, chlorides, free and total sulphur dioxide, density, pH, sulphates, alcohol) and a quality score. After removing missing values and duplicates, 5,427 wines remained; after percentile-based outlier removal, 4,556.</p>
+<p>We chose classification over regression: a score of 6 or more is “good”, below 6 “bad”. Skewed variables were log-transformed, all predictors standardised, and the data split 70/30. Correlated predictors were kept because removing them did not change the results.</p>
+
+<h2>Models</h2>
+<ul>
+<li><strong>Logistic regression with forward stepwise selection</strong> (stepAIC from the null model), aiming for a parsimonious model. It selected a model with AIC 3270.2 against 3273.0 for the full model.</li>
+<li><strong>Lasso-penalised logistic regression</strong> (glmnet), with λ chosen by cross-validation, as a second route to variable selection and protection against overfitting.</li>
+</ul>
+
+<h2>Results</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Model</th><th class="num">Test accuracy</th><th class="num">Sensitivity</th><th class="num">Specificity</th><th class="num">AUC</th></tr></thead>
+<tbody>
+<tr class="best"><td>Logistic, forward selection</td><td class="num">74.2%</td><td class="num">0.759</td><td class="num">0.710</td><td class="num">0.811</td></tr>
+<tr><td>Lasso logistic</td><td class="num">71.8%</td><td class="num">0.821</td><td class="num">0.585</td><td class="num">0.797</td></tr>
+</tbody></table></div>
+<div class="fig-pair">
+<figure><img src="../assets/figures/wine-quality/roc-logistic.png" alt="ROC curve for the forward-selected logistic regression, AUC 0.811." loading="lazy" width="1335" height="825"><figcaption>Logistic regression, forward selection.</figcaption></figure>
+<figure><img src="../assets/figures/wine-quality/roc-lasso.png" alt="ROC curve for the Lasso logistic regression, AUC 0.797." loading="lazy" width="1335" height="825"><figcaption>Lasso logistic regression.</figcaption></figure>
+</div>
+
+<h2>Findings</h2>
+<ul>
+<li><strong>Alcohol</strong> is the clearest positive driver of quality and <strong>volatile acidity</strong> the clearest negative one; sulphates, residual sugar and both sulphur dioxide measures complete the selected model.</li>
+<li>The Lasso kept alcohol, volatile acidity and total sulphur dioxide as its most influential terms, agreeing with the stepwise model on what matters.</li>
+<li>Both models are better at recognising good wines than bad ones. The Lasso is more willing to call a wine good (higher sensitivity) at the cost of more bad wines slipping through (specificity 0.59).</li>
+</ul>
+  </div></div>
+</div>
+</article>
+<nav class="pager wrap" aria-label="More projects"><a href="car-insurance.html"><span class="label">Previous</span><span class="t">Predicting car-insurance claims</span></a><a class="next" href="wikimusic.html"><span class="label">Next</span><span class="t">WikiMusic 2023: the musicians Wikipedia read most</span></a></nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Filippo Navarra · Rome</span>
+    <nav aria-label="Elsewhere">
+      <a href="mailto:filipponavarra224@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/filippo-navarra-b7a72a28b/">LinkedIn</a>
+      <a href="https://github.com/Filippo2605">GitHub</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

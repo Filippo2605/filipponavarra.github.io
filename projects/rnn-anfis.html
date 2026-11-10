@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recurrent vs. neuro-fuzzy networks for weekly market direction · Filippo Navarra</title>
+<meta name="description" content="Business case from Euklid: predicting the weekly direction of three stocks and three indices with an RNN and an ANFIS, and testing a direction-aware loss against RMSE.">
+<meta property="og:title" content="Recurrent vs. neuro-fuzzy networks for weekly market direction · Filippo Navarra">
+<meta property="og:description" content="Business case from Euklid: predicting the weekly direction of three stocks and three indices with an RNN and an ANFIS, and testing a direction-aware loss against RMSE.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-name" href="../index.html">Filippo Navarra</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../projects.html" aria-current="page">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="mailto:filipponavarra224@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<article>
+<header class="cs-head">
+  <div class="wrap">
+    <p class="crumb"><a href="../projects.html">← All work</a></p>
+    <h1>Recurrent vs. neuro-fuzzy networks for weekly market direction</h1>
+    <p class="lede">A business case from Euklid for the Machine Learning course at LUISS, framed as an AI systematic trading challenge: which model best predicts the direction of next week’s return, and does a loss function that cares about direction help?</p>
+    <dl class="facts">
+<div><dt>Client</dt><dd>Euklid (business case)</dd></div>
+<div><dt>Course</dt><dd>Machine Learning, MSc Data Science &amp; Management, LUISS</dd></div>
+<div><dt>Team</dt><dd>Marco Coci (lead), Dong Thi Kieu Trang, Filippo Navarra</dd></div>
+<div><dt>Date</dt><dd>May 2024</dd></div>
+<div><dt>Methods</dt><dd>RNN, ANFIS, custom loss, technical indicators</dd></div>
+    </dl>
+    <p class="cs-links"><a href="../docs/rnn-anfis-report.pdf">Technical report (PDF)</a>
+<a href="https://github.com/Filippo2605/RNN-and-ANFIS-for-financial-forecasting">Repository</a></p>
+  </div>
+</header>
+<div class="cs-body">
+  <div class="wrap"><div class="prose">
+<h2>Problem</h2>
+<p>For a trading signal the direction of the next move matters more than its size, yet models are usually trained on RMSE, which rewards being close in magnitude even when the sign is wrong. We compared a recurrent neural network with an Adaptive Neuro-Fuzzy Inference System (ANFIS), first trained on RMSE and then on a custom loss that adds a heavy penalty whenever the predicted direction is wrong.</p>
+
+<h2>Data</h2>
+<p>Six weekly OHLCV series supplied by Euklid: Amazon, IBM and Microsoft, plus the Nasdaq, S&amp;P 500 and CAC 40 indices, from 1994 (Amazon from 1997) to March 2024, about 1,400–1,570 weeks each. The target was the weekly log return, log(P<sub>t</sub>/P<sub>t−1</sub>). Inputs were enriched with SMA, EMA, the stochastic oscillator, RSI and MACD. Each series was normalised and split chronologically 70 / 20 / 10 into train, validation and test.</p>
+
+<h2>Models</h2>
+<ul>
+<li><strong>RNN</strong>: one recurrent layer of 20 hidden units, tanh, sequence length 10, Adam (lr 0.001), batch 32, 100 epochs.</li>
+<li><strong>ANFIS</strong>: Gaussian membership layer (10 functions over 15 inputs), T-norm rule layer and defuzzification output, with learning rates tuned per series (0.003–0.01).</li>
+<li>Both used L2 weight decay (1e-5) and a step learning-rate schedule (×0.95 every 10 epochs). The direction penalty in the custom loss was 5,000 for the RNN and 5,000–10,000 for ANFIS depending on the series.</li>
+</ul>
+<p>Evaluation treats the forecast as a classifier of direction: accuracy, precision, recall and F1 of up/down on the held-out weeks.</p>
+
+<h2>Results</h2>
+<div class="table-wrap"><table>
+<caption>Directional accuracy on the test weeks</caption>
+<thead><tr><th>Series</th><th class="num">RNN · RMSE</th><th class="num">RNN · custom</th><th class="num">ANFIS · RMSE</th><th class="num">ANFIS · custom</th></tr></thead>
+<tbody>
+<tr><td>Amazon</td><td class="num">0.436</td><td class="num"><strong>0.545</strong></td><td class="num">0.383</td><td class="num">0.425</td></tr>
+<tr><td>IBM</td><td class="num">0.480</td><td class="num">0.456</td><td class="num">0.802</td><td class="num"><strong>0.824</strong></td></tr>
+<tr><td>Microsoft</td><td class="num">0.440</td><td class="num">0.543</td><td class="num">0.751</td><td class="num"><strong>0.759</strong></td></tr>
+<tr><td>CAC 40</td><td class="num">0.527</td><td class="num">0.496</td><td class="num"><strong>0.883</strong></td><td class="num">0.861</td></tr>
+<tr><td>Nasdaq</td><td class="num">0.601</td><td class="num">0.560</td><td class="num">0.857</td><td class="num"><strong>0.909</strong></td></tr>
+<tr><td>S&amp;P 500</td><td class="num">0.480</td><td class="num">0.496</td><td class="num">0.802</td><td class="num"><strong>0.810</strong></td></tr>
+</tbody></table></div>
+<ul>
+<li><strong>ANFIS was the stronger model</strong> on five of six series, and especially on the indices (0.80–0.91 accuracy, F1 up to 0.91 on the Nasdaq).</li>
+<li><strong>Amazon was the exception</strong>: the RNN did better there, which we attributed to the 2022 stock split distorting the price series that ANFIS’s membership functions were fitted on.</li>
+<li><strong>The custom loss helped selectively</strong>: it lifted the RNN by about ten points on Amazon and Microsoft and improved ANFIS on five series, but it hurt the RNN on IBM, CAC 40 and Nasdaq. Its effect depends on the series rather than being a uniform gain.</li>
+</ul>
+
+<h2>Limitations and next steps</h2>
+<ul>
+<li>Accuracies above 0.8 on weekly direction are unusually high for financial data. The natural next step is a walk-forward evaluation and a simple trading backtest with costs, to check the signal survives outside a single chronological split.</li>
+<li>Structural breaks (splits, Covid) clearly affect the models; we did not add macroeconomic variables or test other architectures such as LSTMs.</li>
+</ul>
+  </div></div>
+</div>
+</article>
+<nav class="pager wrap" aria-label="More projects"><a href="pandoro-gate.html"><span class="label">Previous</span><span class="t">Pandoro Gate: public reaction to an influencer scandal</span></a><a class="next" href="italian-forward.html"><span class="label">Next</span><span class="t">Which Italian forwards outperform their numbers?</span></a></nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Filippo Navarra · Rome</span>
+    <nav aria-label="Elsewhere">
+      <a href="mailto:filipponavarra224@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/filippo-navarra-b7a72a28b/">LinkedIn</a>
+      <a href="https://github.com/Filippo2605">GitHub</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

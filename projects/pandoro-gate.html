@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pandoro Gate: public reaction to an influencer scandal · Filippo Navarra</title>
+<meta name="description" content="How Instagram, Facebook, Reddit and the Italian press reacted to the Ferragni–Balocco case, using LLM-based stance classification and topic modelling of 204 news articles.">
+<meta property="og:title" content="Pandoro Gate: public reaction to an influencer scandal · Filippo Navarra">
+<meta property="og:description" content="How Instagram, Facebook, Reddit and the Italian press reacted to the Ferragni–Balocco case, using LLM-based stance classification and topic modelling of 204 news articles.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-name" href="../index.html">Filippo Navarra</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../projects.html" aria-current="page">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="mailto:filipponavarra224@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<article>
+<header class="cs-head">
+  <div class="wrap">
+    <p class="crumb"><a href="../projects.html">← All work</a></p>
+    <h1>Pandoro Gate: public reaction to an influencer scandal</h1>
+    <p class="lede">A business case set by Deloitte for the Data Science in Action course at LUISS. We measured how the public and the press reacted to the Ferragni–Balocco “Pink Christmas” pandoro case across four channels, and what it cost the Ferragni brand.</p>
+    <dl class="facts">
+<div><dt>Client</dt><dd>Deloitte (business case)</dd></div>
+<div><dt>Course</dt><dd>Data Science in Action, MSc Data Science &amp; Management, LUISS</dd></div>
+<div><dt>Team</dt><dd>Andrea Marcoccia (lead), Giorgia Costantini, Filippo Navarra</dd></div>
+<div><dt>My part</dt><dd>News collection, topic modelling, methodology, analysis and writing</dd></div>
+<div><dt>Date</dt><dd>May 2024</dd></div>
+<div><dt>Stack</dt><dd>Python, Mistral API, gensim, NLTK, newspaper3k, PRAW, Streamlit</dd></div>
+    </dl>
+    <p class="cs-links"><a href="https://github.com/Filippo2605/Pandoro-Gate-NLP-analysis">Code on GitHub</a>
+<a href="../docs/pandoro-gate-report.pdf">Technical report (PDF)</a></p>
+  </div>
+</header>
+<div class="cs-body">
+  <div class="wrap"><div class="prose">
+<h2>The question</h2>
+<p>In December 2023 Italy’s antitrust authority fined Chiara Ferragni’s companies over a charity-linked pandoro campaign with Balocco. The brief was to read the reaction quantitatively rather than anecdotally: who was angry, where, for how long, and what the press was actually writing about.</p>
+
+<h2>Data</h2>
+<p>We kept only direct reactions on every platform (no nested replies), so each comment answers the post itself.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Source</th><th>What</th><th class="num">Comments / items</th></tr></thead>
+<tbody>
+<tr><td>Instagram</td><td>9 of Ferragni’s own posts, Sept 2023 – Mar 2024, exported and stripped of replies</td><td class="num">627</td></tr>
+<tr><td>Facebook</td><td>Posts by La Repubblica, Corriere della Sera and Il Giornale (Apify)</td><td class="num">804</td></tr>
+<tr><td>Reddit</td><td>3 threads in r/Italia and r/Italy, top-level comments (PRAW)</td><td class="num">304</td></tr>
+<tr><td>News</td><td>Google News results for three queries, full text via newspaper3k</td><td class="num">204 articles</td></tr>
+</tbody></table></div>
+<p>The news pipeline was my part: an asynchronous <code>requests-html</code> session renders the Google News results, collects article links, and <code>newspaper3k</code> extracts the body text.</p>
+
+<h2>Classifying sentiment with an LLM</h2>
+<p>Comments were short, informal, full of emoji and sometimes in several languages. Rather than strip that signal to fit a pre-trained classifier, we prompted Mistral models directly:</p>
+<ul>
+<li><strong>Instagram</strong>: <code>open-mixtral-8x7b</code>, three labels (positive, neutral, negative).</li>
+<li><strong>Facebook and Reddit</strong>: <code>mistral-small</code> with a four-way stance scheme (against Ferragni, pleased about the fine, neutral, in favour of Ferragni), with the headline of the post passed as context, since a comment like “finally” means nothing without it.</li>
+</ul>
+<p>Model choice per task was a cost trade-off: the Mixtral model at $0.7 per million tokens for the high-volume, simpler task, Mistral Small for the more nuanced stance task. Labels were cached to disk so nothing was classified twice. On an external labelled Twitter benchmark Mistral Small reached only about 56% accuracy, which we report as a limitation below.</p>
+
+<h2>What the comments said</h2>
+<figure class="wide-fig">
+<img src="../assets/figures/pandoro-gate/instagram-sentiment.png" alt="Line chart of positive, neutral and negative comment share on Ferragni's Instagram posts from September 2023 to March 2024. Negative share peaks at about 45% on 14 December 2023." loading="lazy" width="1384" height="684">
+<figcaption>Comment sentiment on Ferragni’s Instagram posts. Dashed lines mark the day the fine was announced and the Fazio TV interview.</figcaption>
+</figure>
+<div class="numbers">
+<div><span class="n">78%</span><span class="k">of Instagram comments positive overall</span></div>
+<div><span class="n">45%</span><span class="k">negative on 14 Dec 2023, the low point</span></div>
+<div><span class="n">71%</span><span class="k">of Facebook comments neutral</span></div>
+<div><span class="n">19%</span><span class="k">of Reddit comments against Ferragni</span></div>
+</div>
+<p>The picture is less one-sided than the headlines suggested. On her own Instagram, where the audience is self-selected, positivity fell from 93% in September to 51% under the post of 14 December, then recovered to around 80% by March 2024. On newspaper pages and Reddit most comments were neutral or descriptive; among those that took a side, comments against her or celebrating the fine outnumbered supportive ones by more than ten to one.</p>
+<figure>
+<img src="../assets/figures/pandoro-gate/facebook-outlets.png" alt="Bar chart of comment stance per newspaper. Neutral comments dominate for Il Giornale, Corriere della Sera and La Repubblica; 20 to 30% are against Ferragni; under 3% are in favour." loading="lazy" width="984" height="584">
+<figcaption>Stance of Facebook comments under each outlet’s post.</figcaption>
+</figure>
+
+<h2>What the press wrote about</h2>
+<p>On the 204 articles I tokenised with NLTK, removed Italian stop words, filtered rare and ubiquitous terms (<code>no_below=10</code>, <code>no_above=0.5</code>) and fitted gensim LDA models with 2 to 10 topics. Three topics had the best coherence (0.577 against 0.560 for five); after tuning the number of passes the final model scored 0.651.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Topic</th><th class="num">Share of tokens</th><th>Characteristic terms</th></tr></thead>
+<tbody>
+<tr><td>Commercial</td><td class="num">39.4%</td><td>sales, branded products, Antitrust, Fenice Srl</td></tr>
+<tr><td>Social media &amp; public life</td><td class="num">33.8%</td><td>Fedez, video, followers, Instagram, communication</td></tr>
+<tr><td>Legal</td><td class="num">26.9%</td><td>fraud, prosecutor’s office, Codacons, investigation</td></tr>
+</tbody></table></div>
+
+<h2>Business impact</h2>
+<p>From secondary sources we estimated the commercial cost: Ferragni lost about 515,000 of roughly 29 million followers, engagement fell from 5.8% (January 2023) to 0.18% (March 2024), and sponsored posts dropped from 23 a month to one, taking estimated monthly sponsorship income from over €2M to about €90k. Safilo, Coca-Cola and Monnalisa ended partnerships. Results were presented to Deloitte in a Streamlit dashboard, with the LDA topics explorable through pyLDAvis.</p>
+
+<h2>Limitations</h2>
+<ul>
+<li>Samples are small (at most 100 comments per Instagram post) and we did not hand-label a subset of our own data to validate the LLM labels; the 56% external benchmark is a reminder that the stance labels are noisy.</li>
+<li>Instagram comments come from Ferragni’s own followers and are not representative of the wider public, which is why we added newspapers and Reddit.</li>
+<li>The economic figures are compiled from press sources, not computed by us.</li>
+</ul>
+  </div></div>
+</div>
+</article>
+<nav class="pager wrap" aria-label="More projects"><span></span><a class="next" href="rnn-anfis.html"><span class="label">Next</span><span class="t">Recurrent vs. neuro-fuzzy networks for weekly market direction</span></a></nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Filippo Navarra · Rome</span>
+    <nav aria-label="Elsewhere">
+      <a href="mailto:filipponavarra224@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/filippo-navarra-b7a72a28b/">LinkedIn</a>
+      <a href="https://github.com/Filippo2605">GitHub</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mental health in tech workplaces · Filippo Navarra</title>
+<meta name="description" content="Cleaning the OSMI 2016 survey from 1,433 to 976 respondents, mapping which conditions are reported where, and modelling which workplace factors relate to a current diagnosis.">
+<meta property="og:title" content="Mental health in tech workplaces · Filippo Navarra">
+<meta property="og:description" content="Cleaning the OSMI 2016 survey from 1,433 to 976 respondents, mapping which conditions are reported where, and modelling which workplace factors relate to a current diagnosis.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-name" href="../index.html">Filippo Navarra</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../projects.html" aria-current="page">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="mailto:filipponavarra224@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<article>
+<header class="cs-head">
+  <div class="wrap">
+    <p class="crumb"><a href="../projects.html">← All work</a></p>
+    <h1>Mental health in tech workplaces</h1>
+    <p class="lede">A Business Analytics project at TalTech in Tallinn, written for an HR audience: what does the OSMI 2016 survey say about mental health in tech companies, and what can employers actually change?</p>
+    <dl class="facts">
+<div><dt>Course</dt><dd>Business Analytics (MMA3100), TalTech</dd></div>
+<div><dt>Team</dt><dd>Yaroslava Bozhok, Valeri Makarov, Filippo Navarra</dd></div>
+<div><dt>My part</dt><dd>EDA, visualisation, modelling, insights, report and presentation</dd></div>
+<div><dt>Date</dt><dd>October 2024</dd></div>
+<div><dt>Stack</dt><dd>Python, pandas, scikit-learn, seaborn, Folium, geopandas</dd></div>
+    </dl>
+    <p class="cs-links"><a href="../docs/mental-health-report.pdf">Report (PDF)</a>
+<a href="https://github.com/Filippo2605/Mental-Health-in-Tech-Companies">Notebook on GitHub</a></p>
+  </div>
+</header>
+<div class="cs-body">
+  <div class="wrap"><div class="prose">
+<h2>Data and cleaning</h2>
+<p>The OSMI Mental Health in Tech Survey 2016 has 1,433 respondents and 63 questions, many of them conditional, so missing values are rarely random. The cleaning steps:</p>
+<ol>
+<li>Dropped 11 questions with more than half the answers missing (1,433 × 52).</li>
+<li>Removed 418 respondents with no answer on current or previous employer benefits. These were mostly self-employed people who skipped the whole workplace block, so imputing them would invent an employer (1,015 × 52).</li>
+<li>Recoded conditional blanks, such as US state for non-US respondents or follow-ups to a “no” diagnosis, as <em>Not applicable</em> rather than missing.</li>
+<li>Normalised free-text gender into three groups and fixed impossible ages (323 → 32; 3 and 99 → the mode, 30).</li>
+<li>Dropped a question that was hard to impute and two that became constant, ending at <strong>976 respondents × 50 variables</strong>.</li>
+</ol>
+<p>The target, “Do you currently have a mental health disorder?”, splits 396 yes / 360 no / 220 maybe.</p>
+
+<h2>What respondents report</h2>
+<div class="fig-pair">
+<figure><img src="../assets/figures/mental-health/disorders.png" alt="Bar chart of the most commonly reported conditions: anxiety together with a mood disorder at 17.9%, ADHD 8.4%, PTSD 4.8%, OCD 3.3%." loading="lazy" width="1384" height="786"><figcaption>Share of respondents reporting each condition.</figcaption></figure>
+<figure><img src="../assets/figures/mental-health/interview-wordcloud.png" alt="Word cloud of reasons respondents give for not raising mental health in a job interview; stigma, physical, fear, depend and discrimination are the largest words." loading="lazy" width="1182" height="746"><figcaption>Why people would not mention it in a job interview.</figcaption></figure>
+</div>
+<ul>
+<li>Most respondents are 25–40, male and US-based; the most common workplace is a company of 26–100 people.</li>
+<li>About 680 said their employer had never formally discussed mental health, and about 610 would not raise a mental-health issue in a job interview. The free-text reasons are dominated by stigma, fear and discrimination.</li>
+<li>Anxiety is the most reported condition across much of Europe, Canada and Asia; mood disorders lead in the US, UK, Chile and Australia.</li>
+</ul>
+<figure class="wide-fig">
+<img src="../assets/figures/mental-health/map-disorders.png" alt="World map coloured by the most commonly reported mental health condition per country." loading="lazy" width="1400" height="888">
+<figcaption>Most frequently reported condition by country of residence.</figcaption>
+</figure>
+
+<h2>Modelling</h2>
+<p>Survey answers were one-hot encoded and the data split 80/20. Random forest, a decision tree, gradient boosting and logistic regression were compared, and a random forest (200 trees, max depth 7, minimum 5 samples per leaf) was selected as the final model.</p>
+<div class="numbers">
+<div><span class="n">64%</span><span class="k">test accuracy (3 classes)</span></div>
+<div><span class="n">0.64</span><span class="k">mean 20-fold CV accuracy</span></div>
+<div><span class="n">88%</span><span class="k">recall on “yes”</span></div>
+<div><span class="n">0%</span><span class="k">recall on “maybe”</span></div>
+</div>
+<p>The model separates “yes” from “no” reasonably well but never predicts “maybe”. That class is genuinely ambiguous, people unsure whether what they experience counts, and the survey gives the model little to tell it apart.</p>
+<figure>
+<img src="../assets/figures/mental-health/rf-importance.png" alt="Random forest feature importance: having sought professional treatment dominates, followed by family history and having experienced an unsupportive response at work." loading="lazy" width="1400" height="397">
+<figcaption>Top predictors in the random forest.</figcaption>
+</figure>
+<p>Having sought treatment dominates, as you would expect. The more useful signals for an employer come next: family history, having seen or experienced a badly handled response at work, expecting co-workers to react negatively, and whether the employer provides mental-health benefits.</p>
+
+<h2>Recommendations for HR</h2>
+<ul>
+<li>Talk about it formally: most respondents’ employers never had, and the interview answers show how much stigma remains. A mental-health ambassador programme was one proposal.</li>
+<li>Make help easy and confidential to reach: free or subsidised counselling, clearly communicated benefits.</li>
+<li>Train managers, because one badly handled case is among the strongest signals in the data.</li>
+<li>Offer flexibility, and repeat the survey regularly so policy follows the data.</li>
+</ul>
+
+<p class="note">Limitations: answers are self-reported, some regions have very few respondents, and the “maybe” class is not learnable from these features.</p>
+  </div></div>
+</div>
+</article>
+<nav class="pager wrap" aria-label="More projects"><a href="italian-forward.html"><span class="label">Previous</span><span class="t">Which Italian forwards outperform their numbers?</span></a><a class="next" href="libera.html"><span class="label">Next</span><span class="t">Transparency of confiscated mafia assets</span></a></nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Filippo Navarra · Rome</span>
+    <nav aria-label="Elsewhere">
+      <a href="mailto:filipponavarra224@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/filippo-navarra-b7a72a28b/">LinkedIn</a>
+      <a href="https://github.com/Filippo2605">GitHub</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>

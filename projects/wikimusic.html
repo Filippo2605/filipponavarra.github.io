@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WikiMusic 2023: the musicians Wikipedia read most · Filippo Navarra</title>
+<meta name="description" content="Data visualisation group project: a dataset of the 1,000 most-viewed musicians on Wikipedia in 2023, built from Wikidata and the Wikipedia API, explored through maps, a link network and a bar-chart race.">
+<meta property="og:title" content="WikiMusic 2023: the musicians Wikipedia read most · Filippo Navarra">
+<meta property="og:description" content="Data visualisation group project: a dataset of the 1,000 most-viewed musicians on Wikipedia in 2023, built from Wikidata and the Wikipedia API, explored through maps, a link network and a bar-chart race.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-name" href="../index.html">Filippo Navarra</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../projects.html" aria-current="page">Work</a>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#experience">Experience</a>
+      <a href="mailto:filipponavarra224@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<article>
+<header class="cs-head">
+  <div class="wrap">
+    <p class="crumb"><a href="../projects.html">← All work</a></p>
+    <h1>WikiMusic 2023: the musicians Wikipedia read most</h1>
+    <p class="lede">A group project for the Data Visualization course at LUISS. We built our own dataset of the 1,000 musicians and bands most read on Wikipedia in 2023 and designed a dashboard to explore it.</p>
+    <dl class="facts">
+<div><dt>Course</dt><dd>Data Visualization, LUISS</dd></div>
+<div><dt>Team</dt><dd>Gian Lorenzo Marchioni, Marco Coci, Vincenzo Camerlengo, Filippo Navarra</dd></div>
+<div><dt>Sources</dt><dd>Wikidata, Wikipedia API</dd></div>
+    </dl>
+    <p class="cs-links"><a href="https://github.com/Filippo2605/WikiMusic-2023">Repository</a></p>
+  </div>
+</header>
+<div class="cs-body">
+  <div class="wrap"><div class="prose">
+<h2>Building the dataset</h2>
+<p>No ready-made dataset covered what we wanted, so we assembled one:</p>
+<ol>
+<li>From <strong>Wikidata</strong>, every person whose occupation is musician, singer, guitarist, songwriter or rapper, plus every entity that is a musical group, restricted to those active since 1960 and with at least one award.</li>
+<li>From the <strong>Wikipedia API</strong>, each candidate’s total page views in 2023. We kept the top 1,000.</li>
+<li>For those 1,000, we collected genre, nationality, birthplace with coordinates, the full article text, the links to other Wikipedia articles, the profile picture, and daily as well as yearly views.</li>
+</ol>
+
+<h2>Views</h2>
+<ul>
+<li><strong>Where they come from</strong>: birthplaces on a map.</li>
+<li><strong>What they play</strong>: word clouds and a sunburst of genres and nationalities.</li>
+<li><strong>How they connect</strong>: a network of artists linked through their Wikipedia articles.</li>
+<li><strong>When people read them</strong>: views by genre over the year and a bar-chart race of the most-viewed artists day by day.</li>
+<li><strong>Who they are</strong>: a newspaper-style page combining each artist’s article introduction with the charts.</li>
+</ul>
+<p>All the views were brought together in a single dashboard.</p>
+  </div></div>
+</div>
+</article>
+<nav class="pager wrap" aria-label="More projects"><a href="wine-quality.html"><span class="label">Previous</span><span class="t">What makes a good wine? Logistic regression and the Lasso</span></a><a class="next" href="linkedin-scraper.html"><span class="label">Next</span><span class="t">LinkedIn comment scraper</span></a></nav>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Filippo Navarra · Rome</span>
+    <nav aria-label="Elsewhere">
+      <a href="mailto:filipponavarra224@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/filippo-navarra-b7a72a28b/">LinkedIn</a>
+      <a href="https://github.com/Filippo2605">GitHub</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
