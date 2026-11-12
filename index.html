@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Filippo Navarra · Data Scientist</title>
-<meta name="description" content="Filippo Navarra is a data scientist in Rome working on NLP, machine learning and applied AI.">
-<meta property="og:title" content="Filippo Navarra · Data Scientist">
-<meta property="og:description" content="Filippo Navarra is a data scientist in Rome working on NLP, machine learning and applied AI.">
+<title>Filippo Navarra · AI &amp; ML Engineer</title>
+<meta name="description" content="Filippo Navarra is an AI and ML engineer in Rome building multilingual NLP, search and computer-vision systems.">
+<meta property="og:title" content="Filippo Navarra · AI &amp; ML Engineer">
+<meta property="og:description" content="Filippo Navarra is an AI and ML engineer in Rome building multilingual NLP, search and computer-vision systems.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +31,7 @@
   <div class="wrap intro-grid">
     <div>
       <h1>Filippo Navarra</h1>
-      <p class="lede">Data scientist in Rome. I work on NLP and machine learning, and I came to data from political science, so I care as much about the question and the reader as about the model.</p>
+      <p class="lede">AI &amp; ML engineer in Rome. At Deloitte I build multilingual NLP and search systems for journalism. I came to data from political science, so I care as much about the question and the reader as about the model.</p>
       <p class="intro-links">
         <a href="projects.html">See my work</a>
         <a href="mailto:filipponavarra224@gmail.com">filipponavarra224@gmail.com</a>
@@ -88,11 +88,21 @@
     <h2>Experience &amp; education</h2>
     <div>
       <ul class="cv">
-        <li><span class="role">Deloitte Consulting</span><span class="when"></span>
-          <span class="detail">Data science for the largest news organisation in Italy: NLP tasks, bringing AI into journalistic workflows, and managing the virtual machines and cloud services behind them.</span></li>
-        <li><span class="role">MSc Data Science and Management, LUISS Guido Carli</span><span class="when">2023–2025</span>
-          <span class="detail">Thesis: <a href="docs/msc-thesis-automating-news.pdf"><em>Automating News: The Role of AI in Journalism</em></a>, supervised by Prof. Giuseppe Italiano. A systems view of AI in the newsroom, ending in a simulated end-to-end workflow that balances automation with editorial oversight under the EU AI Act and GDPR. Business cases for Deloitte and Euklid; Business Analytics at TalTech, Tallinn.</span></li>
-        <li><span class="role">BA Political Science and International Relations</span><span class="when"></span></li>
+        <li><span class="role">AI Engineer · Deloitte, Rome</span><span class="when">Mar 2025 – present</span>
+          <div class="detail">
+            <ul>
+              <li>Built a multilingual named-entity recognition and entity-linking pipeline for journalism analytics: LLM extraction, a custom Wikidata candidate index (SQLite and Elasticsearch over about 100M entities) and an LLM disambiguation step enriched with GeoNames, LEI and Wikidata claims. Reached about 95% accuracy through iterative error analysis, frequency priors and rule-based overrides.</li>
+              <li>Led prompt engineering across the platform (extraction, disambiguation, query augmentation, language detection, relevance ranking) in 8 languages, with few-shot and chain-of-thought prompts, strict JSON-schema outputs, token telemetry and retry layers for production.</li>
+              <li>Designed a multilingual search API in Django and Elasticsearch across news, photo and video archives, with LLM query augmentation, on-the-fly translation (Azure, DeepL), entity-aware boosting and LLM re-ranking.</li>
+              <li>Built guardrail object detection for an Italian semi-public company with SAM and a fine-tuned YOLO (Label Studio, Roboflow), reaching about 90% accuracy in pre-production.</li>
+            </ul>
+          </div></li>
+        <li><span class="role">MSc Data Science and Management, LUISS Guido Carli</span><span class="when">2023 – Jul 2025</span>
+          <span class="detail">110/110 cum laude. Thesis: <a href="docs/msc-thesis-automating-news.pdf"><em>Automating News: An Interactive Implementation of AI in Newsrooms</em></a>, supervised by Prof. Giuseppe Italiano: a hybrid NLP platform for sentiment analysis, topic classification and conversational search through a RAG chatbot, which cut manual processing time by over 60%. Business cases for Deloitte and Euklid.</span></li>
+        <li><span class="role">Erasmus+ exchange, Tallinn University of Technology</span><span class="when">2024 – Jan 2025</span>
+          <span class="detail">Business Analysis and Digital Governance.</span></li>
+        <li><span class="role">BA Political Science, Roma Tre University</span><span class="when">2020 – Nov 2023</span>
+          <span class="detail">Including an Erasmus+ exchange in International Relations at Université Bordeaux Montaigne (2023). DiSCo Lazio scholarship and three consecutive merit scholarships from Roma Tre.</span></li>
       </ul>
     </div>
   </div>
@@ -102,12 +112,15 @@
   <div class="wrap two-col">
     <h2>Tools</h2>
     <div class="skills">
-      <div><h3>Languages</h3><p>Python, R, C, LaTeX</p></div>
-      <div><h3>Machine learning</h3><p>scikit-learn (random forests, boosting, tuning), recurrent and neuro-fuzzy networks, regression trees</p><span class="used">Car insurance · Mental health · RNN vs ANFIS · Italian forwards</span></div>
-      <div><h3>NLP and LLMs</h3><p>LLM-based classification (Mistral API), LangChain, topic modelling with gensim and pyLDAvis, NLTK</p><span class="used">Pandoro Gate · Deloitte · MSc thesis</span></div>
-      <div><h3>Statistics</h3><p>Logistic regression, stepwise AIC and Lasso selection, PCA, k-means</p><span class="used">Wine quality · Italian forwards</span></div>
-      <div><h3>Data collection</h3><p>Selenium, BeautifulSoup, requests-html, newspaper3k, PRAW, Wikidata and the Wikipedia API</p><span class="used">LinkedIn scraper · Pandoro Gate · WikiMusic · Italian forwards</span></div>
-      <div><h3>Visualisation and apps</h3><p>Streamlit, Plotly, Folium, GeoPandas, seaborn</p><span class="used">Libera · Pandoro Gate · Mental health</span></div>
+      <div><h3>LLMs and NLP</h3><p>OpenAI and Mistral APIs, prompt engineering with structured outputs, RAG, LangChain, Hugging Face, entity linking, topic modelling (gensim)</p><span class="used">Deloitte · MSc thesis · Pandoro Gate</span></div>
+      <div><h3>Search and backend</h3><p>Elasticsearch, Django, FastAPI, SQLite, Docker, Git, Bash</p><span class="used">Deloitte</span></div>
+      <div><h3>Machine learning</h3><p>PyTorch, scikit-learn, recurrent and neuro-fuzzy networks, tree ensembles</p><span class="used">RNN vs ANFIS · Car insurance · Mental health</span></div>
+      <div><h3>Computer vision</h3><p>YOLO (fine-tuning), Segment Anything, Label Studio, Roboflow</p><span class="used">Deloitte</span></div>
+      <div><h3>Statistics</h3><p>Logistic regression, stepwise AIC and Lasso selection, PCA, k-means, in R and Python</p><span class="used">Wine quality · Italian forwards</span></div>
+      <div><h3>Data collection and visualisation</h3><p>Selenium, BeautifulSoup, newspaper3k, Wikidata, Streamlit, Plotly, Folium</p><span class="used">Libera · LinkedIn scraper · WikiMusic</span></div>
+      <div><h3>Programming</h3><p>Python (proficient), R (intermediate), C (basics), LaTeX</p></div>
+      <div><h3>Languages</h3><p>Italian (native), English (C1), French (C1), Spanish (B1)</p></div>
+      <div><h3>Certificate</h3><p>Deep Learning Specialization, DeepLearning.AI on Coursera (Andrew Ng), 2023</p></div>
     </div>
   </div>
 </section>

@@ -133,6 +133,9 @@ code { font-family: var(--mono); font-size: 0.86em; background: var(--code-bg); 
 .cv .role { font-weight: 600; }
 .cv .when { font-family: var(--mono); font-size: 0.82rem; color: var(--faint); white-space: nowrap; }
 .cv .detail { grid-column: 1 / -1; color: var(--muted); font-size: 0.97rem; }
+.cv .detail ul { padding-left: 1.1rem; margin-top: 0.35rem; }
+.cv .detail li { display: list-item; border-top: 0; padding: 0; }
+.cv .detail li + li { margin-top: 0.45rem; }
 
 .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1.75rem 2.5rem; }
 .skills h3 { font-family: var(--sans); font-size: 0.98rem; font-weight: 600; letter-spacing: 0; margin-bottom: 0.35rem; }
